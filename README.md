@@ -1,6 +1,7 @@
-# meetup-portfolio-project
+# Meetup 2.0
 
 ## Database Schema Design
+
 ![alt text](./images/schema.png)
 
 ## API Documentation
@@ -141,7 +142,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /signup
+  * URL: signup
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -735,7 +736,7 @@ Change the status of a membership for a group specified by id.
 
 * Error response: If changing the status to "member" and Current User is not the
   organizer of the group or a member of the group with a status of "co-host".
-  * Status Code: 400
+  * Status Code: 403
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -743,7 +744,7 @@ Change the status of a membership for a group specified by id.
     ```json
     {
       "message": "Current User must be the organizer or a co-host to make someone a member",
-      "statusCode": 400
+      "statusCode": 403
     }
     ```
 
@@ -782,10 +783,16 @@ Delete a membership to a group specified by id.
   the user whose membership is being deleted
 * Request
   * Method: DELETE
-  * URL: groups/:groupId/membership
+  * URL: /groups/:groupId/membership
   * Headers:
     * Content-Type: application/json
-  * Body: none
+  * Body:
+
+    ```json
+    {
+      "memberId": 1
+    }
+    ```
 
 * Successful Response
   * Status Code: 200
@@ -809,6 +816,32 @@ Delete a membership to a group specified by id.
     {
       "message": "Group couldn't be found",
       "statusCode": 404
+    }
+    ```
+
+* Error response: Membership does not exist for this User
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Membership does not exist for this User",
+      "statusCode": 404
+    }
+    ```
+
+* Error response: Only the User or organizer may delete a Membership
+  * Status Code: 403
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Only the User or organizer may delete a Membership",
+      "statusCode": 403
     }
     ```
 
@@ -1231,7 +1264,7 @@ Creates and returns a new event for a group specified by its id
     }
     ```
 
-* Error response: Couldn't find a Venue with the specified id
+* Error response: Couldn't find a Group with the specified id
   * Status Code: 404
   * Headers:
     * Content-Type: application/json
@@ -1239,7 +1272,7 @@ Creates and returns a new event for a group specified by its id
 
     ```json
     {
-      "message": "Venue couldn't be found",
+      "message": "Group couldn't be found",
       "statusCode": 404
     }
     ```
@@ -1625,7 +1658,13 @@ Delete an attendance to an event specified by id.
   * URL: /events/:eventId/attendance
   * Headers:
     * Content-Type: application/json
-  * Body: none
+  * Body:
+
+    ```json
+    {
+      "userId": 1
+    }
+    ```
 
 * Successful Response
   * Status Code: 200
@@ -1649,6 +1688,32 @@ Delete an attendance to an event specified by id.
     {
       "message": "Event couldn't be found",
       "statusCode": 404
+    }
+    ```
+
+* Error response: Attendance does not exist for this User
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Attendance does not exist for this User",
+      "statusCode": 404
+    }
+    ```
+
+* Error response: Only the User or organizer may delete an Attendance
+  * Status Code: 403
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Only the User or organizer may delete an Attendance",
+      "statusCode": 403
     }
     ```
 
