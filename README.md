@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId
+  * URL: /users/current
   * Body: none
 
 * Successful Response
@@ -142,7 +142,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: signup
+  * URL: /signup
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -250,7 +250,7 @@ Returns all the groups.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/groups
+  * URL: /users/current/groups
   * Body: none
 
 * Successful Response
