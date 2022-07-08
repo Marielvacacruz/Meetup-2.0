@@ -2,22 +2,10 @@ const express = require('express');
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { validateLogin } = require('../../utils/validateAll');
 
 const router = express.Router();
 
-//validate login
-const validateLogin = [
-    check('credential')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage('Email is required.'),
-    check('password')
-        .exists({ checkFalsy: true })
-        .withMessage('Password is required.'),
-    handleValidationErrors
-];
 
 //Log in
 router.post('/', validateLogin, async (req, res,  next) => {
@@ -26,7 +14,7 @@ router.post('/', validateLogin, async (req, res,  next) => {
     const user = await User.login({ credential, password});
 
     if (!user) {
-        const err = new Error('Invalid credentials');
+        let err = new Error('Invalid credentials');
         err.status = 401;
         err.title = 'Login Failed';
         err.errors = ['The provided credentials were invalid. '];
