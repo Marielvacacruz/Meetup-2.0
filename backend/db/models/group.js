@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Group.belongsTo(
-        models.User, { as: 'Organizer', foreignKey: 'organizerId', onDelete: 'CASCADE', hooks: true  }
+        models.User, { as: 'Organizer', foreignKey: 'organizerId', onDelete: 'CASCADE', hooks: true }
       );
 
       Group.belongsToMany(
@@ -21,6 +21,16 @@ module.exports = (sequelize, DataTypes) => {
       Group.hasMany(
         models.Membership, {foreignKey: 'groupId'}
       );
+        //Polymorphic set up; waiting to test route before implementing
+      // Group.hasMany(
+      //   models.Image, {
+      //     foreignKey: 'imageableId',
+      //     constraints: false,
+      //     scope: {
+      //       imageableType: 'group'
+      //     }
+      //   }
+      // );
     }
   }
   Group.init({

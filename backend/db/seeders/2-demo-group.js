@@ -29,4 +29,4 @@ module.exports = {
       name: ['Academic Writing Group', 'Outdoor Adventures']
     });
   }
-};
+}
