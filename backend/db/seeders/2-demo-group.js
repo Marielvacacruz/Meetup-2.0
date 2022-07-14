@@ -10,7 +10,8 @@ module.exports = {
       type: 'In person',
       private: true,
       city: 'New Orleans',
-      state: 'Louisiana'
+      state: 'Louisiana',
+      previewImage: 'image url'
     },
     {
       organizerId: 2,
@@ -19,7 +20,8 @@ module.exports = {
       type: 'In person',
       private: true,
       city: 'Seattle',
-      state: 'Washington'
+      state: 'Washington',
+      previewImage: 'image url'
     }
   ]);
   },

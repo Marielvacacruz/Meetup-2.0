@@ -24,12 +24,6 @@ const router = express.Router();
 
 //Get all Groups
 router.get("/", async (req, res) => {
-    const previewImage = await Image.findAll({
-        where: {
-            imageableType: 'Group'
-        }
-    });
-
     const Groups = await Group.findAll({
       include: [
         {
@@ -45,7 +39,9 @@ router.get("/", async (req, res) => {
       group: ["Group.id"],
     });
     res.json({
-      Groups, previewImage
+      Groups
     });
   });
+
+  
 module.exports = router;

@@ -67,6 +67,10 @@ module.exports = (sequelize, DataTypes) => {
     state: {
       allowNull: false,
       type:  DataTypes.STRING
+    },
+    previewImage: {
+      allowNull: false,
+      type: DataTypes.STRING
     }
   }, {
     sequelize,

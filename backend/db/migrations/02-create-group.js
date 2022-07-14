@@ -41,6 +41,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      previewImage: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
