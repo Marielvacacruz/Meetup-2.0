@@ -21,8 +21,7 @@ router.post('/login', validateLogin, async (req, res,  next) => {
         return next(err);
     }
 
-    await setTokenCookie(res, user);
-    const { token } = req.cookies;
+  const  token =  await setTokenCookie(res, user);
 
     return res.json({
         ...user.toSafeObject(),

@@ -21,8 +21,8 @@ const router = express.Router();
       }
 
       const user = await User.signup({ email, password, firstName, lastName});
-      await setTokenCookie(res, user);
-      const { token } = req.cookies;
+     const token =  await setTokenCookie(res, user);
+
 
       return res.json({
           ...user.toSafeObject(),
