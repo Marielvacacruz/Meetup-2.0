@@ -1,6 +1,6 @@
 const express = require('express');
 const { setTokenCookie, requireAuth, restoreUser } =  require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Group, Membership, sequelize } = require('../../db/models');
 const { validateSignup } = require('../../utils/validateAll');
 
 const router = express.Router();
@@ -39,6 +39,56 @@ router.get('/current', restoreUser, (req, res) => {
            user.toSafeObject()
         );
     } else return res.json({});
+  });
+
+  //Get all Groups joined or organized by current user
+  router.get('/current/groups', requireAuth, async (req, res) => {
+    const { user } = req;
+
+    const Groups = await Group.findAll({
+    include: [
+      {
+        model: Membership,
+        where: {memberId: user.id},
+        attributes: []
+      }
+    ],
+    attributes: [
+      'id',
+      'organizerId',
+      "name",
+      "about",
+      "type",
+      "private",
+      "city",
+      "state",
+      "previewImage",
+      "createdAt",
+      "updatedAt",
+      [sequelize.fn("COUNT", sequelize.col("Memberships.id")), "numMembers"], //numMembers count is wrong
+    ],
+  group: ["Group.id"]
+  });
+
+  // const Groups = await Group.findAll({
+  //   include: [{
+  //     model: Membership,
+  //     where: {memberId: user.id},
+  //     attributes: []
+  //     }]
+  //   });
+
+  // const Groups = await Membership.findAll({
+  //   where: {memberId: user.id},
+  //   include: [{
+  //     model: Group
+  //   }],
+  //   attributes: []
+  // })
+
+    return res.json({
+      Groups
+    })
   });
 
 

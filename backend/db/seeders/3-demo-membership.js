@@ -8,7 +8,16 @@ module.exports = {
         groupId: 1,
         status: 'host'
       },
-
+      {
+        memberId: 1,
+        groupId: 2,
+        status: 'member'
+      },
+      {
+        memberId: 2,
+        groupId: 1,
+        status: 'member'
+      },
       {
         memberId: 2,
         groupId: 2,
