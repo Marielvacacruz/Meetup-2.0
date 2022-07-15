@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
       Group.hasMany(
         models.Venue, { foreignKey: 'groupId'}
       );
+
+      Group.hasMany(
+        models.Image, { foreignKey: 'groupId'}
+      );
         //Polymorphic set up; waiting to test route before implementing
       // Group.hasMany(
       //   models.Image, {

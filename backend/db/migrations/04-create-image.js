@@ -8,10 +8,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      imageableId: {
+      groupId: {
         allowNull: false,
+        references: {
+          model: 'Groups',
+          key: 'id'
+        },
+        onDelete: 'cascade',
         type: Sequelize.INTEGER
       },
+      // eventId: {
+      //   references: {
+      //     model: 'Events',
+      //     key: 'id'
+      //   },
+      //   onDelete: 'cascade',
+      //   type: Sequelize.INTEGER
+      // },
       imageableType: {
         allowNull: false,
         type: Sequelize.STRING

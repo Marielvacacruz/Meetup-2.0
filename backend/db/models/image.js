@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // Image.belongsTo(
-      //   models.Group, {foreignKey: 'imageableId', constraints: false}
-      //   );
+      Image.belongsTo(
+        models.Group, { foreignKey: 'groupId'}
+        );
 
       // Image.belongsTo(
       //   models.Event, {foreignKey: 'imageableId', constraints: false}
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    imageableId:{
+    groupId:{
       allowNull: false,
       type: DataTypes.INTEGER
     },
