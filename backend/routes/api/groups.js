@@ -106,5 +106,23 @@ router.get("/", async (req, res) => {
     });
   });
 
+  //Create a new Group
+router.post("/", requireAuth, validateGroup, async (req, res) => {
+  const { name, about, type, private, city, state } = req.body;
+  const { user } = req; //grab user information
+
+  const newGroup = await Group.create({
+    organizerId: user.id,
+    name,
+    about,
+    type,
+    private,
+    city,
+    state,
+  });
+
+  return res.json(newGroup);
+});
+
 
 module.exports = router;

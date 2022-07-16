@@ -77,7 +77,6 @@ module.exports = (sequelize, DataTypes) => {
       type:  DataTypes.STRING
     },
     previewImage: {
-      allowNull: false,
       type: DataTypes.STRING
     }
   }, {

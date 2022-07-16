@@ -32,4 +32,35 @@ const validateLogin = [
     handleValidationErrors
 ];
 
-    module.exports = { validateSignup, validateLogin }
+//middleware to validate new Group
+const validateGroup = [
+  check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Name is required')
+    .isLength({ max: 60 })
+    .withMessage('Name must be 60 characters or less.'),
+  check('about')
+    .exists({ checkFalsy: true })
+    .withMessage('About is required')
+    .isLength({ min: 50 })
+    .withMessage('About must be 50 characters or more'),
+  check('type')
+    .exists({ checkFalsy: true })
+    .withMessage('Must choose a type')
+    .isIn(['Online', 'In person'])
+    .withMessage('Type must be Online or In person'),
+  check('private')
+      .exists({checkFalsy: true })
+      .withMessage('this is required')
+      .isBoolean()
+      .withMessage('Private must be a boolean'),
+  check('city')
+      .exists({ checkFalsy: true })
+      .withMessage('City is required'),
+  check('state')
+      .exists({ checkFalsy: true })
+      .withMessage('State is required'),
+  handleValidationErrors
+];
+
+    module.exports = { validateSignup, validateLogin, validateGroup }
