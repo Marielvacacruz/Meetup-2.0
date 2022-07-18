@@ -128,19 +128,17 @@ router.post("/:groupId/membership", requireAuth, restoreUser, async (req, res) =
       status: "pending",
     });
 
-    // const member = await Member.findOne({
-    //   where: {
-    //     userId: user.id,
-    //     groupId,
-    //   },
-    //   attributes: [
-    //     ["groupId", "groupId"],
-    //     ["userId", "memberId"],
-    //     ["status", "status"],
-    //   ],
-    // });
+    const newMember = await Membership.findOne({
+      where: {
+        memberId: user.id,
+        groupId,
+      },
+      attributes:{
+        exclude: ['id', 'createdAt', 'updatedAt']
+      },
+    });
     return res.json(
-      reqMembership,
+      newMember
     );
   }
 });
