@@ -144,6 +144,88 @@ router.post("/:groupId/membership", requireAuth, restoreUser, async (req, res) =
 });
 
 
+//Change status of membership for a group specified by Id
+router.put("/:groupId/memberships", requireAuth, async (req, res, next) => {
+  const { user } = req;
+  const { groupId } = req.params;
+  const { memberId, status } = req.body;
+
+  const group = await Group.findByPk(groupId);
+  const member = await Membership.findOne({
+    where: {
+      memberId: user.id,
+      groupId,
+    },
+  });
+
+  if (!group) {
+    res.status(404);
+    return res.json({
+      message: "Group could not be found",
+      statusCode: 404,
+    });
+  }
+
+  if (status === "pending") {
+    res.status(404);
+    return res.json({
+      message: "Cannot change a membership status to pending",
+      statusCode: 400,
+    });
+  }
+
+  if (user.id !== group.organizerId) {
+    if (status === "co-host") {
+      const err = new Error(
+        "Current User must be the organizer to add a co-host"
+      );
+      err.status = 403;
+      err.message = "Current User must be the organizer to add a co-host";
+      return next(err);
+    }
+  }
+
+  if (member.status !== "host" && member.status !== "co-host") {
+    const err = new Error(
+      "Current User must be the organizer or a co-host to make someone a member"
+    );
+    err.status = 400;
+    err.message =
+      "Current User must be the organizer or a co-host to make someone a member";
+    return next(err);
+  }
+
+  const membership = await Membership.findOne({
+    where: {
+      memberId: memberId,
+      groupId,
+    },
+  });
+
+  if (!membership) {
+    res.status(404);
+    return res.json({
+      message: "Membership between the user and the group does not exist",
+      statusCode: 404,
+    });
+  }
+
+  await membership.update({ status });
+
+  const updated = await Membership.findOne(
+    {
+      where: {
+        memberId: memberId,
+        groupId: groupId
+      },
+    attributes: {
+      exclude: ['createdAt', 'updatedAt']
+    }
+  })
+  res.json(updated);
+});
+
+
 //Get Details of a Group by id
 router.get("/:groupId", async (req, res) => {
   let { groupId } = req.params;
