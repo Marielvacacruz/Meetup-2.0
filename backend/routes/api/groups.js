@@ -20,6 +20,57 @@ const group = require("../../db/models/group");
 
 const router = express.Router();
 
+
+//Create Venue for Group
+router.post("/:groupId/venues",requireAuth,validateVenue, async (req, res) => {
+    const { user } = req;
+    const { address, city, state, lat, lng } = req.body;
+
+    const { groupId } = req.params;
+
+    const group = await Group.findByPk(groupId);
+
+    if (!group) {
+      res.status(404);
+      return res.json({
+        message: "Group could not be found",
+        statusCode: 404,
+      });
+    }
+
+    const member = await Membership.findOne({
+      where: { memberId: user.id, groupId },
+    });
+
+
+    if (user.id === group.organizerId || member.status === "co-host") {
+      const newVenue = await Venue.create({
+        groupId: groupId,
+        address,
+        city,
+        state,
+        lat,
+        lng,
+      });
+
+      const venue = await Venue.findOne({
+        where: { groupId, id: newVenue.id },
+        attributes: {
+         exclude:
+          ["createdAt", "updatedAt"]
+        }
+    });
+      return res.json(venue);
+    } else {
+      res.status(403);
+      return res.json({
+        message: "Forbidden",
+        statusCode: 403,
+      });
+    }
+  }
+);
+
 //Get all members of a Group Specified by it's Id
 router.get("/:groupId/membership", restoreUser, async (req, res) => {
   const { user } = req;
@@ -318,13 +369,13 @@ router.get("/:groupId", async (req, res) => {
     },
   });
 
-  if (Groups.id === null) {
-    let err = new Error("Group Could not be found");
-    err.status = 404;
-    throw err;
-  }
+  // if(Groups.id === null) {
+  //   let err = new Error("Group Could not be found");
+  //   err.status = 404;
+  //   throw err;
+  // }
 
-  res.json(Groups);
+  return res.json(Groups);
 });
 
 //Get all Groups

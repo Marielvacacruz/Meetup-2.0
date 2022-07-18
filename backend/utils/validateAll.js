@@ -63,4 +63,24 @@ const validateGroup = [
   handleValidationErrors
 ];
 
-    module.exports = { validateSignup, validateLogin, validateGroup }
+//Validate Venue
+const validateVenue = [
+  check("address")
+    .exists({ checkFalsy: true })
+    .withMessage("Street address is required"),
+  check("city")
+    .exists({ checkFalsy: true })
+    .withMessage("City is required"),
+  check("state")
+    .exists({ checkFalsy: true })
+    .withMessage("State is required"),
+  check("lat")
+    .isDecimal({ min: -90.0, max: 90.0 })
+    .withMessage("Latitude is not valid"),
+  check("lng")
+    .isDecimal({ min: -180.0, max: 180.0 })
+    .withMessage("Longitude is not valid"),
+  handleValidationErrors
+];
+
+    module.exports = { validateSignup, validateLogin, validateGroup, validateVenue }
