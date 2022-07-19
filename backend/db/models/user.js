@@ -52,6 +52,14 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(
         models.Membership, {foreignKey: 'memberId'}
       );
+
+      User.belongsToMany(
+        models.Event, { through: models.Attendee }
+      );
+
+      User.hasMany(
+        models.Attendance, {foreignKey: 'userId'}
+      );
     }
   }
   User.init({

@@ -13,11 +13,21 @@ module.exports = {
         imageableType: 'Group',
         url: 'image url abc'
       },
-      // {
-      //   eventId: 2,
-      //   imageableType: 'Event',
-      //   url: 'image url 345'
-      // }
+      {
+        eventId: 1,
+        imageableType: 'Event',
+        url: 'image url 345'
+      },
+      {
+        eventId: 2,
+        imageableType: 'Event',
+        url: 'image url 678'
+      },
+      {
+        eventId: 2,
+        imageableType: 'Event',
+        url: 'image url 910'
+      }
     ]);
   },
 

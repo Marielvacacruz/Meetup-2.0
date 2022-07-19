@@ -9,7 +9,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       groupId: {
-        allowNull: false,
         references: {
           model: 'Groups',
           key: 'id'
@@ -17,14 +16,14 @@ module.exports = {
         onDelete: 'cascade',
         type: Sequelize.INTEGER
       },
-      // eventId: {
-      //   references: {
-      //     model: 'Events',
-      //     key: 'id'
-      //   },
-      //   onDelete: 'cascade',
-      //   type: Sequelize.INTEGER
-      // },
+      eventId: {
+        references: {
+          model: 'Events',
+          key: 'id'
+        },
+        onDelete: 'cascade',
+        type: Sequelize.INTEGER
+      },
       imageableType: {
         allowNull: false,
         type: Sequelize.STRING

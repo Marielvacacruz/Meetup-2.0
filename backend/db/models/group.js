@@ -29,16 +29,11 @@ module.exports = (sequelize, DataTypes) => {
       Group.hasMany(
         models.Image, { foreignKey: 'groupId'}
       );
-        //Polymorphic set up; waiting to test route before implementing
-      // Group.hasMany(
-      //   models.Image, {
-      //     foreignKey: 'imageableId',
-      //     constraints: false,
-      //     scope: {
-      //       imageableType: 'group'
-      //     }
-      //   }
-      // );
+
+      Group.hasMany(
+        models.Event, {foreignKey: 'groupId'}
+      );
+
     }
   }
   Group.init({
