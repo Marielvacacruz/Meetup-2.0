@@ -25,6 +25,7 @@ const router = express.Router();
 router.post("/:groupId/venues",requireAuth,validateVenue, async (req, res) => {
     const { user } = req;
     const { address, city, state, lat, lng } = req.body;
+    console.log(req.body);
 
     const { groupId } = req.params;
 
@@ -54,7 +55,7 @@ router.post("/:groupId/venues",requireAuth,validateVenue, async (req, res) => {
       });
 
       const venue = await Venue.findOne({
-        where: { groupId, id: newVenue.id },
+        where: {id: newVenue.id },
         attributes: {
          exclude:
           ["createdAt", "updatedAt"]
@@ -334,18 +335,13 @@ router.get("/:groupId", async (req, res) => {
     include: [
       {
         model: Image,
-        where: {
-          groupId: groupId,
-          imageableType: 'Group'
-        },
         attributes: {
               include: [['groupId', 'imageableId']],
               exclude: ['groupId','createdAt', 'updatedAt', 'imageableType']
             }
       },
-      {
+       {
         model: Membership,
-        attributes: [],
       },
       {
         model: User,
@@ -362,18 +358,20 @@ router.get("/:groupId", async (req, res) => {
       }
     ],
     attributes: {
-      include: [
-        [sequelize.fn("COUNT", sequelize.col("Memberships.id")), "numMembers"],
-      ],
+
       exclude: ['previewImage']
     },
   });
 
-  // if(Groups.id === null) {
-  //   let err = new Error("Group Could not be found");
-  //   err.status = 404;
-  //   throw err;
-  // }
+  Groups.dataValues.numMembers = Groups.dataValues.Memberships.length;
+  delete Groups.dataValues.Memberships;
+
+
+  if(Groups.id === null) {
+    let err = new Error("Group Could not be found");
+    err.status = 404;
+    throw err;
+  };
 
   return res.json(Groups);
 });

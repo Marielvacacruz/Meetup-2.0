@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Membership.belongsTo(models.User, {foreignKey: 'memberId'});
-      Membership.belongsTo(models.Group);
+      Membership.belongsTo(models.Group, {foreignKey: 'groupId'});
     }
   }
   Membership.init({
