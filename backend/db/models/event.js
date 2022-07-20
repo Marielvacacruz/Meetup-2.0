@@ -76,7 +76,12 @@ module.exports = (sequelize, DataTypes) => {
     previewImage: {
       type: DataTypes.STRING
     },
-  }, {
+  },{
+    defaultScope: {
+      attributes: {
+        exclude: ["createdAt", "updatedAt" ]
+      }
+    },
     sequelize,
     modelName: 'Event',
   });

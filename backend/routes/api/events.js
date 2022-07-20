@@ -1,10 +1,87 @@
 const express = require('express');
 const { requireAuth, restoreUser } = require('../../utils/auth');
 const {validateEvent} = require('../../utils/validateAll');
-const { Event, Group, Member, Image, Attendance, Venue, User, sequelize} = require('../../db/models');
+const { Event, Group, Membership, Image, Attendance, Venue, User, sequelize} = require('../../db/models');
 
 
 const router = express.Router();
+
+//Edit an Event specified by its id
+router.put('/:eventId', requireAuth, validateEvent, async(req, res) => {
+    const { user } = req;
+
+    let { eventId } = req.params;
+        eventId = parseInt(eventId);
+
+        const {
+            venueId,
+            name,
+            type,
+            capacity,
+            price,
+            description,
+            startDate,
+            endDate
+        } = req.body;
+
+     if(venueId !== null){
+            const venue = await Venue.findByPk(venueId);
+        if(!venue){
+            res.status(404);
+            return res.json({
+                message: 'Venue could not be found',
+                statusCode: 404
+            });
+        };
+    }
+
+
+        const event = await Event.findByPk(eventId, {
+            include: [
+                {
+                    model: Group,
+                    include: [
+                        {
+                            model: Membership,
+                            where: {
+                                memberId: user.id
+                            }
+                        }
+                    ]
+                }
+            ]
+        });
+
+        if(!event){
+            res.status(404);
+            return res.json({
+                message: 'Event could not be found',
+                statusCode: 404
+            });
+        };
+
+        if(user.id === event.Group.organizerId || (event.Group.Memberships.length && event.Group.Memberships[0].status === 'co-host')){
+          await event.update({
+            venueId,
+            name,
+            type,
+            capacity,
+            price,
+            description,
+            startDate,
+            endDate
+            });
+            return res.json(
+                event
+            );
+        }else {
+            res.status(403);
+            return res.json({
+              message: "Forbidden",
+              statusCode: 403,
+            });
+          }
+});
 
 //Get details of event by it's id
 router.get('/:eventId', async(req, res) => {
