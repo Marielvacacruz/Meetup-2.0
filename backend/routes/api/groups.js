@@ -16,9 +16,162 @@ const {
   Venue,
 } = require("../../db/models");
 const { Op } = require('sequelize');
-const group = require("../../db/models/group");
 
 const router = express.Router();
+
+
+//Get all events of a group by id (WORKING ROUTE)
+router.get("/:groupId/events", async (req, res) => {
+  let { groupId } = req.params;
+  groupId = parseInt(groupId);
+
+  const group = await Group.findByPk(groupId);
+
+  if (!group) {
+    res.status(404);
+    return res.json({
+      message: "Group could not be found",
+      statusCode: 404,
+    });
+  }
+
+  const Events = await Event.findAll({
+    where: { groupId },
+    include: [
+      {
+        model: Attendance,
+        attributes: [],
+      },
+      {
+        model: Group,
+        attributes: ["id", "name", "city", "state"],
+      },
+      {
+        model: Venue,
+        attributes: ["id", "city", "state"],
+      },
+    ],
+    attributes: [
+      "id",
+      "venueId",
+      "groupId",
+      "name",
+      "type",
+      "startDate",
+      "previewImage",
+      [sequelize.fn("COUNT", sequelize.col("Attendances.id")), "numAttending"],
+    ],
+    group: ["Event.id"],
+  });
+
+  return res.json({
+    Events,
+  });
+});
+
+
+
+// //Get all events of a group by id (BROKEN)
+// router.get("/:groupId/events", async (req, res) => {
+//   let { groupId } = req.params;
+//   groupId = parseInt(groupId);
+
+//   const group = await Group.findByPk(groupId);
+
+//   if (!group) {
+//     res.status(404);
+//     return res.json({
+//       message: "Group could not be found",
+//       statusCode: 404,
+//     });
+//   }
+
+//   const Events = await Event.findAll({
+//     where: { groupId },
+//     include: [
+//       {
+//         model: Attendance
+//       },
+//       {
+//         model: Group,
+//         attributes: ["id", "name", "city", "state"],
+//       },
+//       {
+//         model: Venue,
+//         attributes: ["id", "city", "state"],
+//       },
+//     ],
+//     attributes: {
+//       exclude: ['createdAt', 'updatedAt']
+//     },
+//   });
+
+//   console.log(Events);
+
+//        Events.dataValues.numAttending = Events.dataValues.Attendances.length;
+//         delete Events.dataValues.Attendances;
+
+//   return res.json({
+//     Events
+//   });
+// });
+
+
+//Create an event for a Group
+router.post( "/:groupId/events",requireAuth,validateEvent,async (req, res) => {
+    const { user } = req;
+
+    let { groupId } = req.params;
+    groupId = parseInt(groupId);
+
+    const {
+      venueId,
+      name,
+      type,
+      capacity,
+      price,
+      description,
+      startDate,
+      endDate,
+    } = req.body;
+
+    const group = await Group.findByPk(groupId);
+
+    if (!group) {
+      res.status(404);
+      return res.json({
+        message: "Group could not be found",
+        statusCode: 404,
+      });
+    }
+
+    const status = await Membership.findOne({
+      where: { memberId: user.id, groupId },
+    });
+
+    if (user.id === group.organizerId || status.status === "co-host") {
+      const event = await Event.create({
+        groupId: groupId,
+        venueId,
+        name,
+        type,
+        capacity,
+        price,
+        description,
+        startDate,
+        endDate,
+      });
+      return res.json(event);
+    } else {
+      res.status(403);
+      return res.json({
+        message: "Forbidden",
+        statusCode: 403,
+      });
+    }
+  }
+);
+
 
 
 //Create Venue for Group
