@@ -331,13 +331,13 @@ router.get("/:groupId", async (req, res) => {
   let { groupId } = req.params;
   groupId = parseInt(groupId);
 
-  const Groups = await Group.findByPk(groupId, {
+  const group = await Group.findByPk(groupId, {
     include: [
       {
         model: Image,
         attributes: {
               include: [['groupId', 'imageableId']],
-              exclude: ['groupId','createdAt', 'updatedAt', 'imageableType']
+              exclude: ['eventId','groupId','createdAt', 'updatedAt', 'imageableType']
             }
       },
        {
@@ -363,17 +363,16 @@ router.get("/:groupId", async (req, res) => {
     },
   });
 
-  Groups.dataValues.numMembers = Groups.dataValues.Memberships.length;
-  delete Groups.dataValues.Memberships;
-
-
-  if(Groups.id === null) {
+  if(!group) {
     let err = new Error("Group Could not be found");
     err.status = 404;
     throw err;
   };
 
-  return res.json(Groups);
+  group.dataValues.numMembers = group.dataValues.Memberships.length;
+  delete group.dataValues.Memberships;
+
+  return res.json(group);
 });
 
 //Get all Groups
