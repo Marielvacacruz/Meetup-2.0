@@ -83,4 +83,50 @@ const validateVenue = [
   handleValidationErrors
 ];
 
-    module.exports = { validateSignup, validateLogin, validateGroup, validateVenue }
+
+//Validate Events
+const validateEvent = [
+  check('venueId')
+   .exists()
+   .withMessage('Venue does not exist'),
+  check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Name is required')
+    .isLength({ min: 5 })
+    .withMessage('Name must be at least 5 characters'),
+  check('type')
+    .exists({ checkFalsy: true })
+    .withMessage('Must enter a type')
+    .isIn(['Online', 'In person'])
+    .withMessage('Type must be Online or In person'),
+  check('capacity')
+      .exists({checkFalsy: true })
+      .withMessage('Must enter Capacity')
+      .isInt()
+      .withMessage('Capacity must be an Integer'),
+  check('price')
+      .exists()
+      .withMessage('Must enter price')
+      .isDecimal()
+      .withMessage('Price is Invalid'),
+  check('description')
+      .exists({ checkFalsy: true })
+      .withMessage('Description is required'),
+  check('startDate')
+      .exists({ checkFalsy: true })
+      .withMessage('Start date is required')
+      .isAfter()
+      .withMessage('Start date must be in the future'),
+  check('endDate')
+      .exists({ checkFalsy: true })
+      .withMessage('End date is required'),
+  check('endDate').custom((endDatStr, { req }) => {
+    const endDate = new Date(endDatStr);
+    const startDate = new Date(req.body.startDate);
+    if(endDate < startDate){
+      return Promise.reject("End date is less than start date")
+    }else return true;
+  }),
+  handleValidationErrors
+];
+    module.exports = { validateSignup, validateLogin, validateGroup, validateVenue, validateEvent }

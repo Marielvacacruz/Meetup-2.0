@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         models.Group, { foreignKey: 'groupId'}
         );
 
-      // Image.belongsTo(
-      //   models.Event, {foreignKey: 'imageableId', constraints: false}
-      //   );
+      Image.belongsTo(
+        models.Event, {foreignKey: 'eventId'}
+        );
     }
   }
   Image.init({
@@ -27,7 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     groupId:{
-      allowNull: false,
+      type: DataTypes.INTEGER
+    },
+    eventId:{
       type: DataTypes.INTEGER
     },
     imageableType: {

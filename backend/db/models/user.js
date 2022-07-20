@@ -54,11 +54,11 @@ module.exports = (sequelize, DataTypes) => {
       );
 
       User.belongsToMany(
-        models.Event, { through: models.Attendee }
+        models.Event, { through: models.Attendance, foreignKey: 'userId', otherKey: 'eventId'}
       );
 
       User.hasMany(
-        models.Attendance, {foreignKey: 'userId'}
+        models.Attendance, { foreignKey: 'userId'}
       );
     }
   }
