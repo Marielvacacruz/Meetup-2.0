@@ -117,7 +117,11 @@ router.post('/:eventId/attendance', requireAuth, async(req,  res) => {
                 userId: user.id,
                 status: 'pending'
             });
-            return res.json(attendance);
+            return res.json({
+                eventId: attendance.id,
+                userId: attendance.userId,
+                status: attendance.status
+            });
         }
 
 
@@ -177,7 +181,12 @@ router.put('/:eventId/attendance', requireAuth, async(req, res) =>{
       status
     });
 
-    return res.json(attendance);
+    return res.json({
+        id: attendance.id,
+        userId: attendance.userId,
+        eventId: attendance.eventId,
+        status: attendance.status
+    });
 
   }
 });
