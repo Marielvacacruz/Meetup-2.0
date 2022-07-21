@@ -433,6 +433,45 @@ router.delete("/:groupId/memberships", requireAuth, async (req, res) => {
 
 });
 
+//Add an Image to a Group based on group id
+router.post('/:groupId/images', requireAuth, async(req, res) => {
+  const { user } = req;
+  let { groupId } = req.params;
+    groupId = parseInt(groupId);
+
+  const { url } = req.body;
+
+  const group = await Group.findByPk(groupId);
+
+  if(!group){
+    res.status(404);
+    return res.json({
+      message: 'Group could not be found',
+      statusCode: 404
+    });
+  };
+
+  if(user.id !== group.organizerId){
+    res.status(403);
+    return res.json({
+      message: 'User not authorized',
+      statusCode: 403
+    });
+  };
+
+  const newImage = await Image.create({
+    groupId: groupId,
+    imageableType: 'Group',
+    url
+  });
+
+  return res.json({
+    id: newImage.id,
+    imageableId: newImage.groupId,
+    url: newImage.url
+  })
+});
+
 //Get Details of a Group by id
 router.get("/:groupId", async (req, res) => {
   let { groupId } = req.params;
