@@ -12,9 +12,9 @@ router.get('/:eventId/attendance', restoreUser, async(req, res) => {
     let { eventId } = req.params;
         eventId = parseInt(eventId);
 
-        const events = await Event.findByPk(eventId);
+        const event = await Event.findByPk(eventId);
 
-        if(!events){
+        if(!event){
             res.status(404);
             return res.json({
                 message: 'Event Could Not Be Found',
@@ -22,16 +22,15 @@ router.get('/:eventId/attendance', restoreUser, async(req, res) => {
             });
         };
 
-        const group = await Group.findByPk(events.groupId, {
-            include: [
-                {
-                    model: Membership,
-                    where: { memberId: user.id}
-                }
-            ]
-        });
+        const membership = await Membership.findOne({
+            where: {
+              memberId: user.id,
+              groupId: event.groupId,
+              status: ["host", "co-host"]
+            }
+          });
 
-        if(user.id === group.organizerId || group.Membership.status === 'co-host'){
+        if(membership){
              const Attendees = await Event.findByPk(eventId,{
                 include:
                     {
@@ -47,7 +46,7 @@ router.get('/:eventId/attendance', restoreUser, async(req, res) => {
          } else {
                       const Attendees = await Attendance.findAll({
                         where: {
-                          eventId: events.id,
+                          eventId: event.id,
                           status: ["member", "waitlist", "attending"]
                         }
                       });
