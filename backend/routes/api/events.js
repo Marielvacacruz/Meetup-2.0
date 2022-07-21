@@ -172,6 +172,42 @@ router.get('/', async(req, res) => {
     });
 });
 
+//Delete an Event specified by it's id
+router.delete('/:eventId',requireAuth, async(req, res) => {
+    const { user } = req;
+    const { eventId } = req.params;
+
+    const  event = await Event.findByPk(eventId);
+
+    if(!event){
+        res.status(404);
+            return res.json({
+            message: 'Event could not be found',
+            statusCode: 404
+            });
+    };
+
+   const group = await Group.findByPk(event.groupId);
+
+   const status = await Membership.findOne({
+    where: { memberId: user.id, groupId: group.id },
+  });
+
+   if(user.id === group.organizerId || status.status === 'co-host'){
+       await event.destroy();
+       return res.json({
+           message: 'Successfully deleted'
+       });
+   }else{
+       res.status(403);
+       return res.json({
+           message: 'Forbidden',
+           statusCode: 403
+       })
+   }
+
+});
+
 
 
 module.exports = router;
