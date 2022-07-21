@@ -70,15 +70,6 @@ router.get('/current', restoreUser, (req, res) => {
   group: ["Group.id"]
   });
 
-
-  // const Groups = await Membership.findAll({
-  //   where: {memberId: user.id},
-  //   include: [{
-  //     model: Group
-  //   }],
-  //   attributes: []
-  // })
-
     return res.json({
       Groups
     })
