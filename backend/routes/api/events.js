@@ -1,7 +1,7 @@
 const express = require('express');
 const { requireAuth, restoreUser } = require('../../utils/auth');
 const {validateEvent, validateQueryParams} = require('../../utils/validateAll');
-const { Event, Group, Membership, Image, Attendance, Venue, User, sequelize} = require('../../db/models');
+const { Event, Group, Membership, Image, Attendance, Venue, User} = require('../../db/models');
 
 
 const router = express.Router();
@@ -418,7 +418,6 @@ router.get('/', validateQueryParams, async(req, res) => {
         include: [
             {
                 model: Attendance,
-                attributes: []
             },
             {
                 model: Group,
@@ -429,21 +428,20 @@ router.get('/', validateQueryParams, async(req, res) => {
                 attributes: ['id', 'city', 'state']
             }
         ],
-        attributes:[
-            'id',
-            'venueId',
-            'groupId',
-            'name',
-            'type',
-            'startDate',
-            'previewImage',
-             [sequelize.fn("COUNT", sequelize.col("Attendances.id")), "numAttending"],
+        attributes:
+            {
+                exclude: ['price', 'description', 'capacity', 'endDate']
+            } ,
+         where: { ...where },
+        ...pagination,
 
-            ],
-        group: ['Event.id'],
-        // where: { ...where },
-        // ...pagination,
     });
+
+    Events.forEach(function(event)
+       {event.dataValues.numAttending = event.dataValues.Attendances.length,
+        delete event.dataValues.Attendances;
+    }
+    );
 
     return res.json({
         Events
