@@ -10,7 +10,6 @@ const {
   Membership,
   User,
   Image,
-  sequelize,
   Event,
   Attendance,
   Venue,
@@ -40,7 +39,6 @@ router.get("/:groupId/events", async (req, res) => {
     include: [
       {
         model: Attendance,
-        attributes: [],
       },
       {
         model: Group,
@@ -51,18 +49,17 @@ router.get("/:groupId/events", async (req, res) => {
         attributes: ["id", "city", "state"],
       },
     ],
-    attributes: [
-      "id",
-      "venueId",
-      "groupId",
-      "name",
-      "type",
-      "startDate",
-      "previewImage",
-      [sequelize.fn("COUNT", sequelize.col("Attendances.id")), "numAttending"],
-    ],
-    group: ["Event.id"],
+    attributes:{
+      exclude: ['price', 'description', 'capacity', 'endDate']
+    }
+
   });
+
+  Events.forEach(function(event)
+       {event.dataValues.numAttending = event.dataValues.Attendances.length,
+        delete event.dataValues.Attendances;
+        }
+    );
 
   return res.json({
     Events,
@@ -527,16 +524,16 @@ router.get("/", async (req, res) => {
       include: [
         {
           model: Membership,
-          attributes: [],
         }
       ],
-      attributes: {
-        include: [
-          [sequelize.fn("COUNT", sequelize.col("Memberships.id")), "numMembers"]
-        ],
-      },
-      group: ["Group.id"],
     });
+
+      Groups.forEach(function(group)
+        {group.dataValues.numMembers = group.dataValues.Memberships.length,
+        delete group.dataValues.Memberships;
+        }
+    );
+
     res.json({
       Groups
     });

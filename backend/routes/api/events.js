@@ -440,7 +440,7 @@ router.get('/', validateQueryParams, async(req, res) => {
     Events.forEach(function(event)
        {event.dataValues.numAttending = event.dataValues.Attendances.length,
         delete event.dataValues.Attendances;
-    }
+        }
     );
 
     return res.json({

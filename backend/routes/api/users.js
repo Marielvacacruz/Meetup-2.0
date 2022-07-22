@@ -1,6 +1,6 @@
 const express = require('express');
 const { setTokenCookie, requireAuth, restoreUser } =  require('../../utils/auth');
-const { User, Group, Membership, sequelize } = require('../../db/models');
+const { User, Group, Membership } = require('../../db/models');
 const { validateSignup } = require('../../utils/validateAll');
 
 const router = express.Router();
@@ -50,25 +50,16 @@ router.get('/current', restoreUser, (req, res) => {
       {
         model: Membership,
         where: {memberId: user.id},
-        attributes: []
       }
     ],
-    attributes: [
-      'id',
-      'organizerId',
-      "name",
-      "about",
-      "type",
-      "private",
-      "city",
-      "state",
-      "previewImage",
-      "createdAt",
-      "updatedAt",
-      [sequelize.fn("COUNT", sequelize.col("Memberships.id")), "numMembers"], //numMembers count is wrong
-    ],
-  group: ["Group.id"]
+
   });
+
+    Groups.forEach(function(group)
+        {group.dataValues.numMembers = group.dataValues.Memberships.length,
+        delete group.dataValues.Memberships;
+        }
+    );
 
     return res.json({
       Groups
