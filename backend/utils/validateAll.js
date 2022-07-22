@@ -129,4 +129,30 @@ const validateEvent = [
   }),
   handleValidationErrors
 ];
-    module.exports = { validateSignup, validateLogin, validateGroup, validateVenue, validateEvent }
+
+//validate Query Parameters
+
+const validateQueryParams = [
+  check("page")
+    .optional({ nullable: true })
+    .isInt({ min: 0 })
+    .withMessage("Page must be greater than or equal to 0"),
+  check("size")
+    .optional({ nullable: true })
+    .isInt({ min: 0 })
+    .withMessage("Size must be greater than or equal to 0"),
+  check("name")
+    .optional({ nullable: true })
+    .isString()
+    .withMessage("Name must be a string"),
+  check("type")
+    .optional({ nullable: true })
+    .isIn(["Online", "In person"])
+    .withMessage("Type must be 'Online' or 'In person'"),
+  check("startDate")
+    .optional({ nullable: true })
+    .isDate()
+    .withMessage("Start date must be a valid datetime"),
+  handleValidationErrors,
+];
+    module.exports = { validateSignup, validateLogin, validateGroup, validateVenue, validateEvent, validateQueryParams }

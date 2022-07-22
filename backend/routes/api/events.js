@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireAuth, restoreUser } = require('../../utils/auth');
-const {validateEvent} = require('../../utils/validateAll');
+const {validateEvent, validateQueryParams} = require('../../utils/validateAll');
 const { Event, Group, Membership, Image, Attendance, Venue, User, sequelize} = require('../../db/models');
 
 
@@ -369,7 +369,50 @@ router.get('/:eventId', async(req, res) => {
 
 
 // //Get all events
-router.get('/', async(req, res) => {
+router.get('/', validateQueryParams, async(req, res) => {
+    let {page, size, name, type, startDate } = req.query;
+
+    // if (page) page = parseInt(page);
+    // if (size) size = parseInt(size);
+
+    let where = {};
+    let pagination = {};
+
+    if (!page) page = 0;
+    if (!size) size = 20;
+
+    if (Number.isNaN(page) || page < 0 || page > 10) {
+        page = 0;
+      } else {
+        page = page;
+      }
+
+      if (Number.isNaN(size) || size < 0 || size > 20) {
+        size = 20;
+      } else {
+        size = size;
+      }
+
+      if (page > 0) {
+        pagination.limit = size;
+        pagination.offset = size * (page - 1);
+      } else {
+        pagination.limit = size;
+      }
+
+      if (name) {
+        where.name = name;
+      }
+
+      if (startDate) {
+        const date = new Date(startDate);
+        const lastDate = date.setDate(date.getDate() + 1);
+        where.startDate = { [Op.between]: [startDate, lastDate] };
+      }
+
+      if (type === "Online" || type === "In person") {
+        where.type = type;
+      }
 
     const Events = await Event.findAll({
         include: [
@@ -397,7 +440,9 @@ router.get('/', async(req, res) => {
              [sequelize.fn("COUNT", sequelize.col("Attendances.id")), "numAttending"],
 
             ],
-        group: ['Event.id']
+        group: ['Event.id'],
+        // where: { ...where },
+        // ...pagination,
     });
 
     return res.json({
