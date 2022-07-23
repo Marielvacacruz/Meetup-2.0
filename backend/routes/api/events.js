@@ -444,7 +444,7 @@ router.get('/', validateQueryParams, async(req, res) => {
     );
 
     return res.json({
-        Events
+        Events, page, size
     });
 });
 
