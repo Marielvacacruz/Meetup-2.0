@@ -191,7 +191,7 @@ router.put('/:eventId/attendance', requireAuth, async(req, res) =>{
   }
 });
 
-//Add an Image to an Event based on event id (THIS ROUTE NEEDS WORK, NOT CHECKING ATTENDEE)
+//Add an Image to an Event based on event id
 router.post('/:eventId/images', requireAuth, async(req, res) => {
     const { user } = req;
     let { eventId } = req.params;

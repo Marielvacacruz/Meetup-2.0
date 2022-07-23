@@ -112,6 +112,13 @@ router.post( "/:groupId/events",requireAuth,validateEvent,async (req, res) => {
         startDate,
         endDate,
       });
+
+      const newAttendance = await Attendance.create({
+        userId: user.id,
+        eventId: event.id,
+        status: 'attending'
+       });
+
       return res.json(event);
     } else {
       res.status(403);
