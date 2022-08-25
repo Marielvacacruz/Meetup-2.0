@@ -1,3 +1,54 @@
+
+.form-container {
+    width: 26em;
+    height: auto;
+    padding: 0.6em;
+    border-radius: var(--border-radius);
+}
+
+.form-errors {
+    color: var(--error-color);
+}
+
+.form-errors p {
+    margin: 0em;
+}
+
+ input[type=email], input[type=password] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 5em;
+    box-sizing: border-box;
+  }
+
+.login-button {
+    background-color: #5b678d;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    border-radius: 5em;
+}
+
+/* Add a hover effect for buttons */
+.login-button:hover {
+    opacity: 0.8;
+  }
+
+.form-container > p, .form-container > h1 {
+    margin: 0.3em 0;
+}
+
+.form-container > h1 {
+    color: var(--main-color);
+    font-size: 2em;
+}
+
 form {
     display: flex;
     height: fit-content;
@@ -5,4 +56,21 @@ form {
     flex-direction: column;
     justify-content: space-evenly;
     gap: 1.3em;
+}
+
+
+.form-container button.demo-login {
+    color: var(--contrasting-text-color);
+    background-color: var(--main-color);
+    border-radius: var(--border-radius);
+    border: none;
+    padding: 0.5em;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
+.radio-field {
+    display: flex;
+    gap: 0.3em;
+    align-items: center;
 }

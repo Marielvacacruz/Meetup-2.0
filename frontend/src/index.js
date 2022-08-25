@@ -8,6 +8,9 @@ import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 
+//style sheets
+import './styles/LoginForm.css'
+
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
