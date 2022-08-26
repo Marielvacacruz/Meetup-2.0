@@ -38,7 +38,7 @@ router.get('/current', restoreUser, (req, res) => {
         return res.json(
            user.toSafeObject()
         );
-    } else return res.json({});
+    } else return res.json(null);
   });
 
   //Get all Groups joined or organized by current user

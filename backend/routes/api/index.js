@@ -16,8 +16,8 @@ router.use('/images', imagesRouter);
 
 
 //test route
-router.post('/test', function(req, res) {
-    res.json({requestBody: req.body});
-});
+// router.post('/test', function(req, res) {
+//     res.json({requestBody: req.body});
+// });
 
 module.exports = router;
