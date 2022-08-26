@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignUp';
+import Navigation from './components/Navigation';
 import {restoreUser} from './store/session';
 
 function App() {
@@ -13,16 +14,21 @@ function App() {
   useEffect(() => {
     dispatch(restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  return isLoaded && (
-    <Switch>
-      <Route exact path="/login">
-        <LoginFormPage/>
-      </Route>
-      <Route path="/signup">
-        <SignupFormPage/>
-      </Route>
-    </Switch>
-  );
+  return (
+    <>
+      <Navigation isLoaded={isLoaded}/>
+      {isLoaded && (
+      <Switch>
+        <Route exact path="/login">
+          <LoginFormPage/>
+        </Route>
+        <Route path="/signup">
+          <SignupFormPage/>
+        </Route>
+      </Switch>
+  )};
+    </>
+  )
 }
 
 export default App;

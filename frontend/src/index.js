@@ -10,6 +10,7 @@ import * as sessionActions from './store/session';
 
 //style sheets
 import './styles/Login-signupForm.css'
+import './styles/Navigation.css'
 
 const store = configureStore();
 
