@@ -15,11 +15,11 @@ const setUser = (user) => {
     }
 };
 
-// const removeUser = () =>  {
-//     return {
-//         type: REMOVE_USER,
-//     }
-// };
+const removeUser = () =>  {
+    return {
+        type: REMOVE_USER,
+    }
+};
 
 //login thunk function
 export const login = (user) => async (dispatch) => {
@@ -52,6 +52,18 @@ export const signupUser = (user) => async (dispatch) => {
     const data = await res.json();
     dispatch(setUser(data));
     return res;
+};
+
+//logout user thunk
+export const logout = () => async (dispatch) => {
+    const res = await csrfFetch('/api/session/logout', {
+        method: 'DELETE',
+    });
+    
+    if(res.ok){
+        dispatch(removeUser())
+    };
+        return res;
 };
 
 
