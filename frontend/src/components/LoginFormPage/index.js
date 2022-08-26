@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {login} from '../../store/session';
+import { login } from '../../store/session';
 import { Redirect } from  'react-router-dom';
 
 
@@ -17,7 +17,7 @@ function LoginFormPage() {
 
     //handle onSubmit
     const handleSubmit = (e) => {
-        e.preventdefault();
+        e.preventDefault();
         setErrors([]);
 
         return dispatch(login({credential, password}))
@@ -31,7 +31,7 @@ function LoginFormPage() {
     return (
         <div className='form-container'>
             <h1 className='form-title'>Welcome, Please Log In</h1>
-            <form id='login-form' onSubmit = {handleSubmit}>
+            <form id='login-form' onSubmit = {(e) => handleSubmit(e)}>
                 <div className='form-errors'>
                     <ul>
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}

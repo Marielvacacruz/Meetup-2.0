@@ -1,5 +1,6 @@
 //contains all actions specific to session user's info
     //including session user's Redux reducer
+
 import {csrfFetch} from './csrf';
 
 //constants
@@ -10,30 +11,38 @@ const REMOVE_USER = 'session/removeUser';
 const setUser = (user) => {
     return {
         type: SET_USER,
-        user
+        payload: user
     }
 };
 
-const removeUser = () =>  {
-    return {
-        type: REMOVE_USER,
-    }
-};
+// const removeUser = () =>  {
+//     return {
+//         type: REMOVE_USER,
+//     }
+// };
 
 //login thunk function
 export const login = (user) => async (dispatch) => {
-    const {credential, password} = user;
     const res = await csrfFetch('/api/session/login', {
         method: 'POST',
-        body: JSON.stringify({
-            credential,
-            password
-        }),
+        body: JSON.stringify(user),
     });
+    if(res.ok){
+        const data = await res.json();
+        dispatch(setUser(data));
+    }
+    return res;
+
+};
+
+//restore session user thunk
+export const restoreUser = () => async (dispatch) => {
+    const res = await csrfFetch('/api/users/current')
     const data = await res.json();
-    dispatch(setUser(data.user));
+    dispatch(setUser(data));
     return res;
 };
+
 
 const initialState = { user: null };
 
@@ -41,7 +50,7 @@ export default function sessionReducer(state = initialState, action){
     let newState = {...state};
     switch(action.type){
         case SET_USER:
-            newState.user = action.user;
+            newState.user = action.payload;
             return newState;
         case REMOVE_USER:
             newState.user = null;

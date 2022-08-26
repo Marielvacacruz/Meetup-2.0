@@ -2,15 +2,25 @@
 .form-container {
     width: 26em;
     height: auto;
-    padding: 0.6em;
-    border-radius: var(--border-radius);
+    padding: 20px;
+    margin: auto;
 }
 
-.form-errors {
-    color: var(--error-color);
+.form-title {
+    font-size: 1.5em;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
-.form-errors p {
+form {
+    display: flex;
+    height: fit-content;
+    margin-top: 1em;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1.3em;
+}
+
+.form-errors  {
     margin: 0em;
 }
 
@@ -25,52 +35,18 @@
   }
 
 .login-button {
-    background-color: #5b678d;
+    background-color: #6db529;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
+    margin: 8px;
     border: none;
     cursor: pointer;
     width: 60%;
     border-radius: 5em;
+    font-size: 15px;
 }
 
 /* Add a hover effect for buttons */
 .login-button:hover {
     opacity: 0.8;
   }
-
-.form-container > p, .form-container > h1 {
-    margin: 0.3em 0;
-}
-
-.form-container > h1 {
-    color: var(--main-color);
-    font-size: 2em;
-}
-
-form {
-    display: flex;
-    height: fit-content;
-    margin-top: 1em;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 1.3em;
-}
-
-
-.form-container button.demo-login {
-    color: var(--contrasting-text-color);
-    background-color: var(--main-color);
-    border-radius: var(--border-radius);
-    border: none;
-    padding: 0.5em;
-    font-weight: bold;
-    margin-top: 0.5em;
-}
-
-.radio-field {
-    display: flex;
-    gap: 0.3em;
-    align-items: center;
-}
