@@ -2,6 +2,7 @@ import React, {useState, useEffect}from 'react';
 import { useDispatch } from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
+import SignupFormPage from './components/SignUp';
 import {restoreUser} from './store/session';
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
       <Route exact path="/login">
         <LoginFormPage/>
       </Route>
-
+      <Route path="/signup">
+        <SignupFormPage/>
+      </Route>
     </Switch>
   );
 }

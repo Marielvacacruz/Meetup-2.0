@@ -6,9 +6,29 @@
     margin: auto;
 }
 
+.signup-container {
+    width: 26em;
+    height: auto;
+    padding: 20px;
+    margin: auto;
+}
+
 .form-title {
     font-size: 1.5em;
     font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+#signup-title {
+    color:#298db5;
+}
+
+span {
+    font-family: 'Helvetica';
+}
+
+#signup-link {
+    font-size: medium;
+    color:#6db529
 }
 
 form {
@@ -24,7 +44,7 @@ form {
     margin: 0em;
 }
 
- input[type=email], input[type=password] {
+ input[type=email], input[type=password], [type=name], [type=lastName] {
     width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -32,10 +52,23 @@ form {
     border: 1px solid #ccc;
     border-radius: 5em;
     box-sizing: border-box;
+    font-family: 'Helvetica';
   }
 
 .login-button {
     background-color: #6db529;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    border-radius: 5em;
+    font-size: 15px;
+}
+
+.signup-button {
+    background-color: #298db5;
     color: white;
     padding: 14px 20px;
     margin: 8px;

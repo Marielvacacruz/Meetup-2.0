@@ -43,6 +43,17 @@ export const restoreUser = () => async (dispatch) => {
     return res;
 };
 
+//Signup User thunk
+export const signupUser = (user) => async (dispatch) => {
+    const res = await csrfFetch('/api/users/signup', {
+        method: 'POST',
+        body: JSON.stringify(user),
+    });
+    const data = await res.json();
+    dispatch(setUser(data));
+    return res;
+};
+
 
 const initialState = { user: null };
 

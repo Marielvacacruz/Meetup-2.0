@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { login } from '../../store/session';
-import { Redirect } from  'react-router-dom';
+import { Redirect, Link} from  'react-router-dom';
 
 
 function LoginFormPage() {
@@ -31,6 +31,7 @@ function LoginFormPage() {
     return (
         <div className='form-container'>
             <h1 className='form-title'>Welcome, Please Log In</h1>
+            <span>Not a member yet? <Link id='signup-link' to='/signup'>Sign up</Link></span>
             <form id='login-form' onSubmit = {(e) => handleSubmit(e)}>
                 <div className='form-errors'>
                     <ul>
@@ -58,7 +59,7 @@ function LoginFormPage() {
                             />
                 </div>
                 <button className='login-button' type='submit'>Log in</button>
-                <label>Remember Me</label>
+                <label>Keep me signed in</label>
                     <input
                         type='checkbox'
                         name='remember'
