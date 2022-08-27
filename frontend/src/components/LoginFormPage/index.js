@@ -15,6 +15,15 @@ function LoginFormPage() {
     //if current user is logged in, redirect
     if(currentUser) return (<Redirect to='/'/>);
 
+    //demo user set up
+    const demo_email  = 'demouser1@user.io';
+    const demo_password = 'password';
+
+    function demoLogin(){
+        setCredential(demo_email);
+        setPassword(demo_password);
+    };
+
     //handle onSubmit
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -59,12 +68,8 @@ function LoginFormPage() {
                             />
                 </div>
                 <button className='login-button' type='submit'>Log in</button>
-                <label>Keep me signed in</label>
-                    <input
-                        type='checkbox'
-                        name='remember'
-                    />
             </form>
+                <button className='demo-user' onClick={demoLogin}>Demo User</button>
         </div>
 
     )

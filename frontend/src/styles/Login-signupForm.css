@@ -67,6 +67,15 @@ form {
     font-size: 15px;
 }
 
+.demo-user {
+    background-color: #298db5;
+    border: none;
+    border-radius: 2em;
+    color: aliceblue;
+    width: 50%;
+    margin: 8px;
+}
+
 .signup-button {
     background-color: #298db5;
     color: white;
