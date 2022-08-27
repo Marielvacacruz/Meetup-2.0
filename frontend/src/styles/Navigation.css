@@ -1,1 +1,76 @@
+.Navigation-container  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.profile-container {
+    display: flex;
+    flex-direction:  column;
+    overflow: hidden;
+}
+
+.profile-button {
+    background-color: rgb(233, 142, 109);
+    border: none;
+    border-radius: 5em;
+    width: 60px;
+    height: 30px;
+}
+
+.profile-dropdown {
+    display: none;
+    padding: 12px 16px;
+    position:relative;
+}
+
+.profile-container:hover .profile-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-name {
+    font-size: 16px;
+    font-family: Helvetica;
+}
+
+#user-email {
+    font-size: 14px;
+    font-family: Helvetica;
+}
+
+.logout-button {
+    background-color: #298db5;
+    color: white;
+    padding: 7px px;
+    margin: 4px;
+    border: none;
+    border-radius: 5em;
+}
+
+.logout-button:hover {
+    opacity: 0.8;
+}
+
+.meetup-nav {
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color:#298db5;
+}
+.meetup-nav:hover {
+    opacity: 0.8;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Helvetica';
+    padding-right: 14px;
+    color:coral
+
+}
+
+.nav-link:hover {
+    color: #298db5;
+}

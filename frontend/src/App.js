@@ -26,7 +26,7 @@ function App() {
           <SignupFormPage/>
         </Route>
       </Switch>
-  )};
+  )}
     </>
   )
 }
