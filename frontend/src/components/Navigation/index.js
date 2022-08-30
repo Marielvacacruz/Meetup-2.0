@@ -22,8 +22,11 @@ function Navigation({ isLoaded }) {
     //render unordered list with nav link to homepage
     return (
         <div className="Navigation-container">
-            <div>
-                <NavLink className='meetup-nav' exact to='/'>Meetup</NavLink>
+            <div className="left-nav">
+                <NavLink className='meetup-nav' exact to='/'>
+                    Meetup
+                </NavLink>
+                <p>beta</p>
             </div>
                 {isLoaded && sessionLinks}
         </div>

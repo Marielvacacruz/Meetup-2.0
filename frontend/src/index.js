@@ -13,6 +13,7 @@ import *  as groupActions from './store/groups';
 import './styles/Login-signupForm.css'
 import './styles/Navigation.css'
 import './styles/HomePage.css'
+import './styles/GroupCard.css'
 
 const store = configureStore();
 

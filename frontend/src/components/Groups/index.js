@@ -12,9 +12,9 @@ function GroupsPage () {
     },[dispatch]);
 
     return(
-        <div>
-            <h2>Groups</h2>
-            <div>
+        <div className='groups-page'>
+            <h2 className='group-title'>Groups</h2>
+            <div className='all-groups-container'>
                 {allGroups.map(group => (
                 <div key={group.id}>
                     <GroupCard group={group}/>

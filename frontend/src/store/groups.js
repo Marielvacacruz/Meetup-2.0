@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf";
 
 //constants
 const GET_ALL_GROUPS =  'GET_ALL_GROUPS';
-// const ADD_GROUP = 'ADD_GROUP';
+const ADD_GROUP = 'ADD_GROUP';
 // const UPDATE_GROUP = 'UPDATE_GROUP';
 // const DELETE_GROUP = 'DELETE_GROUP';
 
@@ -16,6 +16,13 @@ const getGroups = (groups) => {
     }
 };
 
+const addGroup = (group) => {
+    return {
+        type: ADD_GROUP,
+        group,
+    }
+}
+
 //GET all Groups thunk
 export const getAllGroups = () => async (dispatch) => {
     const res = await csrfFetch('/api/groups');
@@ -25,6 +32,13 @@ export const getAllGroups = () => async (dispatch) => {
         dispatch(getGroups(data.Groups));
     }
     return res;
+};
+
+export const createGroup = () => async(dispatch) => {
+    const res = await csrfFetch('/api/groups', {
+        method: 'POST',
+
+    });
 };
 
 const initialState = {};
