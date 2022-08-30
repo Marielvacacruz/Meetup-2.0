@@ -13,10 +13,12 @@ function GroupsPage () {
 
     return(
         <div>
-            <h2>Groups should be displayed here</h2>
+            <h2>Groups</h2>
             <div>
                 {allGroups.map(group => (
-                <div key={group.id}><GroupCard group={group}/></div>
+                <div key={group.id}>
+                    <GroupCard group={group}/>
+                </div>
                 ))}
             </div>
 
