@@ -5,6 +5,8 @@ import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignUp';
 import Navigation from './components/Navigation';
 import {restoreUser} from './store/session';
+import HomePage from './components/Home/homepage';
+import GroupsPage from './components/Groups/index';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +21,12 @@ function App() {
       <Navigation isLoaded={isLoaded}/>
       {isLoaded && (
       <Switch>
+        <Route exact path='/'>
+          <HomePage/>
+        </Route>
+        <Route exact path='/groups'>
+          <GroupsPage/>
+        </Route>
         <Route exact path="/login">
           <LoginFormPage/>
         </Route>
