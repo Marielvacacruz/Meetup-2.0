@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import {restoreUser} from './store/session';
 import HomePage from './components/Home/homepage';
 import GroupsPage from './components/Groups/index';
+import MyGroups from './components/Groups/myGroups';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,9 @@ function App() {
       <Switch>
         <Route exact path='/'>
           <HomePage/>
+        </Route>
+        <Route exact path ='/my-groups'>
+          <MyGroups/>
         </Route>
         <Route exact path='/groups'>
           <GroupsPage/>

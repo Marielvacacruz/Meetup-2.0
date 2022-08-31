@@ -35,3 +35,24 @@
 .info-container {
     padding:  2px 16px;
 }
+
+.delete-group-button {
+    background-color: #298db5;
+    color: white;
+    border: none;
+    border-radius: 5em;
+    padding: 7px 20px;
+    margin: 8px;
+}
+
+.edit-group-button {
+    background-color: rgb(228, 113, 20);
+    color: white;
+    border: none;
+    border-radius: 5em;
+    padding: 7px 20px;
+}
+
+.delete-group-button:hover, .edit-group-button:hover {
+    opacity: 0.8;
+}

@@ -36,13 +36,22 @@ export default function ProfileButton ({user}) {
     return (
         <div className="profile-container">
             <button className='profile-button' onClick={openMenu}>
-                <i className="fa-solid fa-user-large fa-lg"/>
+              <i class="fa-solid fa-bars"></i>
             </button>
             {showMenu &&(
                 <div className="profile-dropdown">
-                    <span id='user-name'>{user.firstName}</span>
-                    <span id='user-email'>{user.email}</span>
-                    <Link className="my-groups-link" to='/my-groups'>my groups</Link>
+                    <span id='user-name'>Welcome, {user.firstName}</span>
+                    <Link to='/' className="home-button">Home</Link>
+                    <div  className="my-groups-nav">
+                      <Link className="my-groups-link" to='/my-groups'>
+                      <img src="https://secure.meetupstatic.com/next/images/shared/joinGroup.svg?w=384"
+                      alt="group of people"
+                      className="my-groups-image"
+                      />
+                        my groups
+                        </Link>
+                      <Link className="start-group-link" to='group-form'>start a new group</Link>
+                    </div>
                     <button className='logout-button' onClick={logoutEvent}>Log out</button>
                 </div>
             )}

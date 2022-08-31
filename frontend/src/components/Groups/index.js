@@ -21,7 +21,6 @@ function GroupsPage () {
                 </div>
                 ))}
             </div>
-
         </div>
     );
 
