@@ -548,7 +548,7 @@ router.get("/", async (req, res) => {
 
   //Create a new Group
 router.post("/", requireAuth, validateGroup, async (req, res) => {
-  const { name, about, type, private, city, state } = req.body;
+  const { name, about, type, city, state } = req.body;
   const { user } = req; //grab user information
 
   const newGroup = await Group.create({
@@ -556,7 +556,6 @@ router.post("/", requireAuth, validateGroup, async (req, res) => {
     name,
     about,
     type,
-    private,
     city,
     state,
   });
@@ -576,7 +575,7 @@ router.put("/:groupId", requireAuth, validateGroup, async (req, res) => {
   const { user } = req;
   let { groupId } = req.params;
   groupId = parseInt(groupId);
-  const { name, about, type, private, city, state } = req.body;
+  const { name, about, type, city, state } = req.body;
 
   const group = await Group.findByPk(groupId);
 
@@ -600,7 +599,6 @@ router.put("/:groupId", requireAuth, validateGroup, async (req, res) => {
     name,
     about,
     type,
-    private,
     city,
     state,
   });

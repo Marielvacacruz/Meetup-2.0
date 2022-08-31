@@ -8,7 +8,6 @@ module.exports = {
       name: 'Academic Writing Group',
       about: 'lorem ipsum',
       type: 'In person',
-      private: true,
       city: 'New Orleans',
       state: 'Louisiana',
       previewImage: 'image url'
@@ -18,7 +17,6 @@ module.exports = {
       name: 'Outdoor Adventures',
       about: 'we go outside',
       type: 'In person',
-      private: true,
       city: 'Seattle',
       state: 'Washington',
       previewImage: 'image url'

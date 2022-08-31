@@ -29,7 +29,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       private: {
-        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       city: {

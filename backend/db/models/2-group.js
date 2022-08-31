@@ -60,7 +60,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     private: {
-      allowNull: false,
       type: DataTypes.BOOLEAN
     },
     city: {

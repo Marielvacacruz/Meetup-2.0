@@ -5,7 +5,7 @@ import { csrfFetch } from "./csrf";
 //constants
 const GET_ALL_GROUPS =  'GET_ALL_GROUPS';
 const ADD_GROUP = 'ADD_GROUP';
-//const UPDATE_GROUP = 'UPDATE_GROUP';
+const UPDATE_GROUP = 'UPDATE_GROUP';
 const DELETE_GROUP = 'DELETE_GROUP';
 
 //action creators
@@ -20,6 +20,13 @@ const addGroup = (group) => {
     return {
         type: ADD_GROUP,
         group,
+    }
+};
+
+const updateGroup = (group) => {
+    return {
+        type: UPDATE_GROUP,
+        group
     }
 };
 
