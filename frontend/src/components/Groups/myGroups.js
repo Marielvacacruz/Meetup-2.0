@@ -14,12 +14,6 @@ function MyGroups() {
 
 
 
-   const deleteGroup = (e, group) => {
-        const {id} = group;
-        e.preventDefault();
-        dispatch(deleteGroupThunk(id))
-   };
-
 //    const  editGroup = (e) => {
 //         e.preventDefault();
 //         dispatch(updateGroup())
@@ -32,7 +26,7 @@ function MyGroups() {
                 {myGroups.map(group => (
                 <div key={group.id}>
                     <GroupCard group={group}/>
-                    <button onClick={() => deleteGroup({group})} className="delete-group-button">delete</button>
+                    <button onClick={() => {dispatch(deleteGroupThunk(group.id))}} className="delete-group-button">delete</button>
                     <button className="edit-group-button">edit</button>
                 </div>
                 ))}
