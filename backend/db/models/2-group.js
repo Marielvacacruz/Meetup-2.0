@@ -19,19 +19,19 @@ module.exports = (sequelize, DataTypes) => {
       );
 
       Group.hasMany(
-        models.Membership, {foreignKey: 'groupId'}
+        models.Membership, {foreignKey: 'groupId', onDelete:'CASCADE', hooks:true}
       );
 
       Group.hasMany(
-        models.Venue, { foreignKey: 'groupId'}
+        models.Venue, { foreignKey: 'groupId', onDelete:'CASCADE', hooks:true}
       );
 
       Group.hasMany(
-        models.Image, { foreignKey: 'groupId'}
+        models.Image, { foreignKey: 'groupId', onDelete:'CASCADE', hooks:true}
       );
 
       Group.hasMany(
-        models.Event, {foreignKey: 'groupId'}
+        models.Event, {foreignKey: 'groupId', onDelete:'CASCADE', hooks:true}
       );
 
     }
