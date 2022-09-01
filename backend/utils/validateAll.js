@@ -46,14 +46,14 @@ const validateGroup = [
     .withMessage('About must be 50 characters or more'),
   check('type')
     .exists({ checkFalsy: true })
-    .withMessage('Must choose a type')
+    .withMessage('Must enter a type')
     .isIn(['Online', 'In person'])
     .withMessage('Type must be Online or In person'),
-  check('private')
-      .exists({checkFalsy: true })
-      .withMessage('this is required')
-      .isBoolean()
-      .withMessage('Private must be a boolean'),
+  // check('private')
+  //     .exists({checkFalsy: true })
+  //     .withMessage('this is required')
+  //     .isBoolean()
+  //     .withMessage('Private must be a boolean'),
   check('city')
       .exists({ checkFalsy: true })
       .withMessage('City is required'),
