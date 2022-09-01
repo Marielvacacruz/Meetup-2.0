@@ -20,11 +20,11 @@ function GroupForm(){
      const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        group = {name, about, type, city, state};
+        const group = {name, about, type, city, state};
 
         return dispatch(createGroup(group))
             .then(async (res) => {
-                if(res.ok)history.push(`/groups/${group.id}`)
+                if(res.ok)history.push('/my-groups')
             })
             .catch(async (res) => {
                 const data = await res.json();
@@ -90,6 +90,7 @@ function GroupForm(){
                                 required
                         />
                 </div>
+                <button className='create-button' type='submit'>Create Group</button>
             </form>
         </div>
     );
