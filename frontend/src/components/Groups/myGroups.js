@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { getUserGroups, deleteGroupThunk } from "../../store/groups";
 import GroupCard from "./GroupCard";
+import {Redirect} from  'react-router-dom';
 
 
 function MyGroups() {
@@ -12,6 +13,10 @@ function MyGroups() {
         dispatch(getUserGroups())
     },[dispatch]);
 
+    const currentUser = useSelector(state => state.session.user);
+
+    //if current user is logged in, redirect
+    if(!currentUser) return (<Redirect to='/'/>);
 
 
 //    const  editGroup = (e) => {
