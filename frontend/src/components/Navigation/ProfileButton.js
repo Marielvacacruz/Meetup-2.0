@@ -50,7 +50,7 @@ export default function ProfileButton ({user}) {
                       />
                         my groups
                         </Link>
-                      <Link className="start-group-link" to='group-form'>start a new group</Link>
+                      <Link className="start-group-link" to='/group-form'>start a new group</Link>
                     </div>
                     <button className='logout-button' onClick={logoutEvent}>Log out</button>
                 </div>

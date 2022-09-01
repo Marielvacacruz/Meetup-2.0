@@ -15,7 +15,7 @@ function MyGroups() {
 
     const currentUser = useSelector(state => state.session.user);
 
-    //if current user is logged in, redirect
+    //if current user is logged out, redirect
     if(!currentUser) return (<Redirect to='/'/>);
 
 

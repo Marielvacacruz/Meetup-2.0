@@ -8,6 +8,7 @@ import {restoreUser} from './store/session';
 import HomePage from './components/Home/homepage';
 import GroupsPage from './components/Groups/index';
 import MyGroups from './components/Groups/myGroups';
+import GroupForm from './components/Groups/GroupForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
         <Route exact path ='/my-groups'>
           <MyGroups/>
         </Route>
+        <Route path='/group-form'><GroupForm/></Route>
         <Route exact path='/groups'>
           <GroupsPage/>
         </Route>
