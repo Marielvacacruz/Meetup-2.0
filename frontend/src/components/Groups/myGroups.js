@@ -13,6 +13,10 @@ function MyGroups() {
         dispatch(getUserGroups())
     },[dispatch]);
 
+    //const [isLoaded, setIsLoaded] = useState(false);
+
+
+
     const currentUser = useSelector(state => state.session.user);
 
     //if current user is logged out, redirect

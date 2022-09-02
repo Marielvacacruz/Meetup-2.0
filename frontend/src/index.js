@@ -14,6 +14,7 @@ import './styles/Login-signupForm.css'
 import './styles/Navigation.css'
 import './styles/HomePage.css'
 import './styles/GroupCard.css'
+import './styles/GroupForm.css'
 
 const store = configureStore();
 

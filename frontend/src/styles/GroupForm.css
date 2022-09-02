@@ -1,0 +1,44 @@
+[type=about] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: flex;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Helvetica';
+}
+
+[type=type], [type=city], [type=state] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 5em;
+    box-sizing: border-box;
+    font-family: 'Helvetica';
+}
+
+.create-button {
+    background-color: #298db5;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    border-radius: 5em;
+    font-size: 15px;
+}
+
+.submit-button {
+    background-color: #6db529;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    border-radius: 5em;
+    font-size: 15px;
+}
