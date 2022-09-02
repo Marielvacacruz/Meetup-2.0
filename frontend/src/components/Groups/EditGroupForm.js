@@ -1,31 +1,31 @@
-import  {useState}  from 'react';
+import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
-import {createGroup} from '../../store/groups';
+import { useParams, useHistory } from 'react-router-dom';
+import {editGroup} from  '../../store/groups';
 
-function GroupForm(){
-    //form fields
-    const [name, setName] = useState('');
-    const [about, setAbout] = useState('');
-    const [type, setType] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
+function EditGroup(){
+    let {groupId} = useParams();
+    const group = useSelector((state) => state.groupState[`${groupId}`]);
+
+    //set state for form fields based on current group
+    const [name, setName] = useState(group.name);
+    const [about, setAbout] = useState(group.about);
+    const [type, setType] = useState(group.type);
+    const [city, setCity] = useState(group.city);
+    const [state, setState] = useState(group.state);
     const [errors, setErrors] = useState([]);
 
-    const dispatch =  useDispatch();
+    const dispatch = useDispatch();
     const history = useHistory();
-    const currentUser = useSelector(state => state.session.user);
 
-    if(!currentUser) return (<Redirect to='/'/>);
-
-     //handle onSubmit
-     const handleSubmit = (e) => {
+    //handle onSubmit
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         setErrors([]);
         const group = {name, about, type, city, state};
 
-        return dispatch(createGroup(group))
+        return dispatch(editGroup(group, groupId))
             .then(async (res) => {
                 if(res.ok)history.push('/my-groups')
             })
@@ -35,10 +35,9 @@ function GroupForm(){
             });
     };
 
-
-    return (
+    return(
         <div className='form-container'>
-            <h1 className='form-title'>Create a new group here</h1>
+            <h1 className='form-title'>Editing {name}</h1>
             <form id='create-group-form' onSubmit = {(e) => handleSubmit(e)}>
                 <div className='form-errors'>
                     <ul>
@@ -93,10 +92,10 @@ function GroupForm(){
                                 required
                         />
                 </div>
-                <button className='create-button' type='submit'>Create Group</button>
+                <button className='submit-button' type='submit'>submit edits</button>
             </form>
         </div>
     );
 };
 
-export default GroupForm;
+export default EditGroup;

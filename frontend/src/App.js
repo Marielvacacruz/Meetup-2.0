@@ -9,6 +9,9 @@ import HomePage from './components/Home/homepage';
 import GroupsPage from './components/Groups/index';
 import MyGroups from './components/Groups/myGroups';
 import GroupForm from './components/Groups/GroupForm';
+import EditGroup from './components/Groups/EditGroupForm';
+import PageUnderConstruction from './components/Utility/UnderConstruction';
+import PageNotFound from './components/Utility/PageNotFound';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,9 +32,17 @@ function App() {
         <Route exact path ='/my-groups'>
           <MyGroups/>
         </Route>
-        <Route path='/group-form'><GroupForm/></Route>
+        <Route exact path ='/:groupId/edit'>
+          <EditGroup/>
+        </Route>
+        <Route path='/group-form'>
+          <GroupForm/>
+        </Route>
         <Route exact path='/groups'>
           <GroupsPage/>
+        </Route>
+        <Route exact path='/events'>
+          <PageUnderConstruction/>
         </Route>
         <Route exact path="/login">
           <LoginFormPage/>
@@ -39,6 +50,7 @@ function App() {
         <Route path="/signup">
           <SignupFormPage/>
         </Route>
+        <Route><PageNotFound/></Route>
       </Switch>
   )}
     </>

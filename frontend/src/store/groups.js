@@ -81,6 +81,19 @@ export const createGroup = (group) => async(dispatch) => {
     };
 };
 
+//UPDATE GROUP thunk
+export const editGroup = (group, id) => async (dispatch) => {
+    const res = await csrfFetch(`/api/groups/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(group),
+    });
+    if(res.ok){
+        const updatedGroup = await res.json();
+        dispatch(updateGroup(updatedGroup))
+        return res
+    }
+};
+
 //DELETE Group thunk
 export const deleteGroupThunk = (groupId) => async(dispatch) => {
     const res = await csrfFetch(`/api/groups/${groupId}`, {
@@ -103,6 +116,9 @@ export default function groupsReducer(state = initialState, action){
             action.groups.forEach((group) => newState[group.id] = group);
             return newState;
         case ADD_GROUP:
+            newState[action.group.id] = action.group
+            return newState;
+        case UPDATE_GROUP:
             newState[action.group.id] = action.group
             return newState;
         case DELETE_GROUP:

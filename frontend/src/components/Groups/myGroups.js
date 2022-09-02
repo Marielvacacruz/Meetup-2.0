@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect} from "react";
 import { getUserGroups, deleteGroupThunk } from "../../store/groups";
 import GroupCard from "./GroupCard";
-import {Redirect} from  'react-router-dom';
+import {Link, Redirect} from  'react-router-dom';
 
 
 function MyGroups() {
@@ -18,12 +18,6 @@ function MyGroups() {
     //if current user is logged out, redirect
     if(!currentUser) return (<Redirect to='/'/>);
 
-
-//    const  editGroup = (e) => {
-//         e.preventDefault();
-//         dispatch(updateGroup())
-//    }
-
     return (
         <div className='groups-page'>
             <h2 className='group-title'>My groups</h2>
@@ -32,7 +26,7 @@ function MyGroups() {
                 <div key={group.id}>
                     <GroupCard group={group}/>
                     <button onClick={() => {dispatch(deleteGroupThunk(group.id))}} className="delete-group-button">delete</button>
-                    <button className="edit-group-button">edit</button>
+                    <Link to={`/${group.id}/edit`} className="edit-group-link">edit</Link>
                 </div>
                 ))}
             </div>
