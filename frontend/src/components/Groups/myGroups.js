@@ -13,9 +13,6 @@ function MyGroups() {
         dispatch(getUserGroups())
     },[dispatch]);
 
-    //const [isLoaded, setIsLoaded] = useState(false);
-
-
 
     const currentUser = useSelector(state => state.session.user);
 
@@ -29,8 +26,12 @@ function MyGroups() {
                 {myGroups.map(group => (
                 <div key={group.id}>
                     <GroupCard group={group}/>
-                    <button onClick={() => {dispatch(deleteGroupThunk(group.id))}} className="delete-group-button">delete</button>
-                    <Link to={`/${group.id}/edit`} className="edit-group-link">edit</Link>
+                    {currentUser.id  === group.organizerId &&
+                        <>
+                            <button onClick={() => { dispatch(deleteGroupThunk(group.id)); } } className="delete-group-button">delete</button>
+                            <Link to={`/${group.id}/edit`} className="edit-group-link">edit</Link>
+                        </>
+                   }
                 </div>
                 ))}
             </div>

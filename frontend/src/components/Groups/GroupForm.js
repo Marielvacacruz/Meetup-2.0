@@ -1,6 +1,6 @@
 import  {useState}  from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory, Redirect} from 'react-router-dom';
 import {createGroup} from '../../store/groups';
 
 function GroupForm(){
@@ -35,6 +35,10 @@ function GroupForm(){
             });
     };
 
+    const cancelButton = () => {
+        //e.preventDefault(); don't need this because button type is 'button'
+        history.push('/my-groups')
+    }
 
     return (
         <div className='form-container'>
@@ -94,6 +98,7 @@ function GroupForm(){
                         />
                 </div>
                 <button className='create-button' type='submit'>Create Group</button>
+                <button className='cancel-button' typ='button' onClick={cancelButton}>cancel</button>
             </form>
         </div>
     );
