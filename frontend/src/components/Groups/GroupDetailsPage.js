@@ -14,6 +14,7 @@ function  GroupDetails(){
     const group = useSelector((state) => state.groupState[`${groupId}`]);
     const members  = useSelector((state) => Object.values(state.membersState));
     const currentUser  = useSelector(state => state.session.user);
+    //const status = useSelector((state)  =>  state.membersState[`${currentUser.id}`].Membership.status);
 
    useEffect(() => {
     dispatch(getGroupDetails(groupId))
@@ -24,11 +25,11 @@ function  GroupDetails(){
      if(currentUser){
         return dispatch(joinGroup(groupId))
         .then(async (res) => {
-            if(res.status === 200) setMessage('Your request was received, organizer will approve asap')
+            if(res.status === 200) setMessage('Your request was received, your status is pending')
         })
         .catch(async (res) => {
-            const data = await  res.json();
-            if(data.status === 400) setMessage('there was an error')
+            const data = await res.json();
+            setMessage(data.message)
         })
     }else{
         history.push('/login')

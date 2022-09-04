@@ -57,7 +57,7 @@ const deleteMembership = () => {
  export const leaveGroup =(groupId, memberId) => async(dispatch) => {
     const res = await csrfFetch(`/api/groups/${groupId}/membership`, {
         method: 'DELETE',
-        body: memberId
+        body: memberId,
     });
 
     const response = await  res.json();
