@@ -1,5 +1,5 @@
-
 function GroupCard({group}){
+
     const  {name, city, state, about, numMembers} = group;
     return(
 

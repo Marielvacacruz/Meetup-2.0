@@ -12,6 +12,7 @@ import GroupForm from './components/Groups/GroupForm';
 import EditGroup from './components/Groups/EditGroupForm';
 import PageUnderConstruction from './components/Utility/UnderConstruction';
 import PageNotFound from './components/Utility/PageNotFound';
+import GroupDetails from './components/Groups/GroupDetailsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route exact path='/groups'>
           <GroupsPage/>
+        </Route>
+        <Route path='/groups/:groupId'>
+          <GroupDetails/>
         </Route>
         <Route exact path='/events'>
           <PageUnderConstruction/>

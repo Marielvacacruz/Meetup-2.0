@@ -18,6 +18,7 @@
     height:fit-content;
     width: 600px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .card:hover {
