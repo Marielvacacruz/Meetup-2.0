@@ -308,7 +308,7 @@ router.post("/:groupId/membership", requireAuth, restoreUser, async (req, res) =
 
 
 //Change status of membership for a group specified by Id
-router.put("/:groupId/memberships", requireAuth, async (req, res, next) => {
+router.put("/:groupId/membership", requireAuth, async (req, res, next) => {
   const { user } = req;
   const { groupId } = req.params;
   const { memberId, status } = req.body;
@@ -389,9 +389,10 @@ router.put("/:groupId/memberships", requireAuth, async (req, res, next) => {
 });
 
 //Delete Membership to a group specified by id
-router.delete("/:groupId/memberships", requireAuth, async (req, res) => {
+router.delete("/:groupId/membership", requireAuth, async (req, res) => {
   const { user } = req;
-  const { memberId } = req.body;
+  let { memberId } = req.body;
+  memberId = parseInt(memberId);
 
   let { groupId } = req.params;
   groupId = parseInt(groupId);
