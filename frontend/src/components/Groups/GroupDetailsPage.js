@@ -1,14 +1,19 @@
 import {useDispatch, useSelector} from 'react-redux';
 import { getGroupDetails } from '../../store/groups';
 import { getAllMembers, joinGroup } from '../../store/memberships';
-import {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {useParams, useHistory} from 'react-router-dom';
 
 function  GroupDetails(){
     const dispatch = useDispatch();
+    const history = useHistory();
     const {groupId} = useParams();
+
+    const [message, setMessage] = useState('');
+
     const group = useSelector((state) => state.groupState[`${groupId}`]);
     const members  = useSelector((state) => Object.values(state.membersState));
+    const currentUser  = useSelector(state => state.session.user);
 
    useEffect(() => {
     dispatch(getGroupDetails(groupId))
@@ -16,12 +21,17 @@ function  GroupDetails(){
    },[]);
 
    const handleClick = () => {
-     const currentUser  = useSelector(state => state.session.user);
      if(currentUser){
-        dispatch(joinGroup(groupId))
-        .then(console.log('request successful'))
-     }else{
-        
+        return dispatch(joinGroup(groupId))
+        .then(async (res) => {
+            if(res.status === 200) setMessage('Your request was received, organizer will approve asap')
+        })
+        .catch(async (res) => {
+            const data = await  res.json();
+            if(data.status === 400) setMessage('there was an error')
+        })
+    }else{
+        history.push('/login')
      }
    };
 
@@ -33,8 +43,9 @@ function  GroupDetails(){
                 className="placeholder-image"
                 />
             </div>
-
+            {group.name}
            <button onClick={handleClick}>Join this group</button>
+           {message && (<div>{message}</div>)}
            <div className='all-members'>
             {members.map(member => (
                 <span key={member.id}>

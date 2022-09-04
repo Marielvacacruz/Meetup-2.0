@@ -8,14 +8,17 @@ import {Link, Redirect, useHistory} from  'react-router-dom';
 function MyGroups() {
     const dispatch = useDispatch();
     const history = useHistory();
+
     const myGroups = useSelector((state) => Object.values(state.groupState));
 
+
     useEffect(() => {
-        dispatch(getUserGroups())
+        dispatch(getUserGroups());
     },[dispatch]);
 
-
     const currentUser = useSelector(state => state.session.user);
+    const membershipStatus = useSelector((state) => state.membersState[currentUser.id]);
+    console.log(membershipStatus)
 
     //if current user is logged out, redirect
     if(!currentUser) return (<Redirect to='/'/>);

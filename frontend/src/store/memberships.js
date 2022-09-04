@@ -42,7 +42,9 @@ const deleteMembership = () => {
 
  //ADD membership
  export const joinGroup =(groupId) => async(dispatch) => {
-    const res = await  csrfFetch(`/api/groups/${groupId}/membership`)
+    const res = await  csrfFetch(`/api/groups/${groupId}/membership`, {
+        method: 'POST'
+    })
 
     if(res.ok){
         const member  = await res.json();
