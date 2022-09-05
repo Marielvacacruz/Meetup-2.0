@@ -64,15 +64,16 @@ function EditGroup(){
                                 required
                             />
                         <label htmlFor='type'>Will this group meet in person or online?</label>
-                            <input
+                            <select
                                 type="type"
-                                name='type'
                                 id='type'
-                                placeholder='In person or Online'
                                 value={type}
                                 onChange={(e) => setType(e.target.value)}
                                 required
-                        />
+                            >
+                                <option value='In person'>In person</option>
+                                <option value='Online'>Online</option>
+                            </select>
                         <label htmlFor='city'>Enter city</label>
                             <input
                                 type="city"

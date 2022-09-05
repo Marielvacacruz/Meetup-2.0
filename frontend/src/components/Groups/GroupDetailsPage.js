@@ -46,7 +46,7 @@ function  GroupDetails(){
             </div>
             {group.name}
            <button onClick={handleClick}>Join this group</button>
-           {message && (<div>{message}</div>)}
+           {message && (<div className='message-display'>{message}</div>)}
            <div className='all-members'>
             {members.map(member => (
                 <span key={member.id}>

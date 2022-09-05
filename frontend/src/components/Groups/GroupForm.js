@@ -50,39 +50,44 @@ function GroupForm(){
                     </ul>
                 </div>
                 <div className='form-inputs'>
-                        <label htmlFor='name'>Name your  group</label>
+                        <label htmlFor='name'>Name your group</label>
                             <input
                                 type="name"
                                 name='name'
                                 id='name'
+                                placeholder='example: Tennis Club'
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
                             />
-                        <label htmlFor='about'>Tell us about your group</label>
+                        <label htmlFor='about'>Group details</label>
                             <textarea
                                 type='about'
                                 name='about'
                                 id='about'
+                                placeholder='In 50 words or more tell us about your group'
                                 value={about}
                                 onChange={(e) => setAbout(e.target.value)}
                                 required
                             />
-                        <label htmlFor='type'>Will this group meet in person or online?</label>
-                            <input
+                        <label htmlFor='type'>Will this group meet in person or online? Choose:
+                            <select
                                 type="type"
-                                name='type'
                                 id='type'
-                                placeholder='In person or Online'
                                 value={type}
                                 onChange={(e) => setType(e.target.value)}
                                 required
-                        />
+                            >
+                                <option value='In person'>In person</option>
+                                <option value='Online'>Online</option>
+                            </select>
+                        </label>
                         <label htmlFor='city'>Enter city</label>
                             <input
                                 type="city"
                                 name='city'
                                 id='city'
+                                placeholder='i.e New Orleans'
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                                 required
@@ -92,6 +97,7 @@ function GroupForm(){
                                 type="state"
                                 name='state'
                                 id='state'
+                                placeholder='i.e Louisiana or L.A'
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
                                 required

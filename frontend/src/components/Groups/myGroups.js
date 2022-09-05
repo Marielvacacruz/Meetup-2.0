@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect} from "react";
+import { useEffect, useState} from "react";
 import { getUserGroups, deleteGroupThunk } from "../../store/groups";
 import { leaveGroup } from "../../store/memberships";
 import GroupCard from "./GroupCard";
@@ -12,6 +12,8 @@ function MyGroups() {
 
     const myGroups = useSelector((state) => Object.values(state.groupState));
 
+    //set messages for successful res or errors
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         dispatch(getUserGroups());
@@ -30,6 +32,7 @@ function MyGroups() {
     return (
         <div className='groups-page'>
             <h2 className='group-title'>My groups</h2>
+            {message && (<div className="message-display">{message}</div>)}
             <div className='all-groups-container'>
                 {myGroups.map(group => (
                 <div key={group.id}>
@@ -38,13 +41,35 @@ function MyGroups() {
                     </div>
                     {currentUser.id  === group.organizerId &&
                     <>
-                        <button onClick={() => { dispatch(deleteGroupThunk(group.id)) } } className="delete-group-button">delete</button>
+                        <button onClick={() => {
+                            return dispatch(deleteGroupThunk(group.id))
+                                    .then(async (res) => {
+                                        if(res.statusCode === 200) setMessage(res.message)
+                                    })
+                                    .catch(async (res) => {
+                                        const data = await res.json();
+                                        setMessage(data.message)
+                            })
+                         }} className="delete-group-button">
+                            delete
+                        </button>
                         <Link to={`/${group.id}/edit`} className="edit-group-link">edit</Link>
                     </>
                     }
                     {currentUser.id !== group.organizerId &&
                     <>
-                        <button onClick={() => { dispatch(leaveGroup(group.id, currentUser.id)) } } >leave group</button>
+                        <button onClick={() => {
+                            return dispatch(leaveGroup(group.id, currentUser.id))
+                            .then(async (res) => {
+                                setMessage(res.message)
+                            })
+                            .catch(async (res) => {
+                                const data = await res.json();
+                                setMessage(data.message)
+                            })
+                            }}>
+                                leave group
+                        </button>
                     </>
                     }
                 </div>
