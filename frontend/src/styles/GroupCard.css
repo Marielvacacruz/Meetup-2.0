@@ -37,6 +37,16 @@
     padding:  2px 16px;
 }
 
+.join-group-button {
+    background-color: #de62e7;
+    color: white;
+    border: none;
+    border-radius: 5em;
+    padding: 7px 20px;
+    margin: 8px;
+
+}
+
 .delete-group-button {
     background-color: #298db5;
     color: white;

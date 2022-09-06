@@ -10,6 +10,7 @@ function  GroupDetails(){
     const {groupId} = useParams();
 
     const [message, setMessage] = useState('');
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const group = useSelector((state) => state.groupState[`${groupId}`]);
     const members  = useSelector((state) => Object.values(state.membersState));
@@ -19,7 +20,10 @@ function  GroupDetails(){
    useEffect(() => {
     dispatch(getGroupDetails(groupId))
     dispatch(getAllMembers(groupId))
-   },[]);
+    .then(() => setIsLoaded(true));
+   },[dispatch, groupId]);
+
+
 
    const handleClick = () => {
      if(currentUser){
@@ -36,7 +40,7 @@ function  GroupDetails(){
      }
    };
 
-    return(
+    return isLoaded && (
         <div className='details-container'>
             <div className="banner-container">
                 <img src='https://media.istockphoto.com/id/1202344480/vector/crowd-of-young-and-elderly-men-and-women-in-trendy-hipster-clothes-diverse-group-of-stylish.webp?s=612x612&w=is&k=20&c=sDS8HuUo4kzDHxgHRlbyWYoNiFIyWTAmSZh8eWUJKi4='
@@ -44,14 +48,25 @@ function  GroupDetails(){
                 className="placeholder-image"
                 />
             </div>
-            {group.name}
-           <button onClick={handleClick}>Join this group</button>
-           {message && (<div className='message-display'>{message}</div>)}
+            <button onClick={handleClick} className='join-group-button'>Join group</button>
+            {message && (<div className='message-display'>{message}</div>)}
+            <div className='info-container'>
+                <h2>{group.name}</h2>
+                <p>{group.city}, {group.state} <i className="fa-solid fa-location-dot"></i></p>
+                <p>this group meets: {group.type}</p>
+                <p>{group.about}</p>
+            </div>
+            <div>
+                <h3>Organizer</h3>
+                {group.Organizer.firstName}
+            </div>
            <div className='all-members'>
+            <h3>Members ({group.numMembers})</h3>
             {members.map(member => (
-                <span key={member.id}>
+                <div key={member.id}>
                     {member.firstName}
-                </span>
+                    <i className="fa-solid fa-circle-user"></i>
+                </div>
             ))}
            </div>
         </div>

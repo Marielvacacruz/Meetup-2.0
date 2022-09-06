@@ -44,12 +44,8 @@ export default function ProfileButton ({user}) {
                     <Link to='/' className="home-button">Home</Link>
                     <div  className="my-groups-nav">
                       <Link className="my-groups-link" to='/my-groups'>
-                      <img src="https://secure.meetupstatic.com/next/images/shared/joinGroup.svg?w=384"
-                      alt="group of people"
-                      className="my-groups-image"
-                      />
                         my groups
-                        </Link>
+                      </Link>
                       <Link className="start-group-link" to='/group-form'>start a new group</Link>
                     </div>
                     <button className='logout-button' onClick={logoutEvent}>Log out</button>

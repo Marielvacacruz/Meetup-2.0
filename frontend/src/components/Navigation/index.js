@@ -24,7 +24,7 @@ function Navigation({ isLoaded }) {
         <div className="Navigation-container">
             <div className="left-nav">
                 <NavLink className='meetup-nav' exact to='/'>
-                    Meetup
+                    Meetup 2.0
                 </NavLink>
                 <p>beta</p>
             </div>

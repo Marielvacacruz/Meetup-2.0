@@ -15,9 +15,12 @@ function MyGroups() {
     //set messages for successful res or errors
     const [message, setMessage] = useState('');
 
+    //attempting to fix loading issue
+    // const [isLoaded, setIsLoaded] = useState(false);
+
     useEffect(() => {
-        dispatch(getUserGroups());
-    },[dispatch]);
+        dispatch(getUserGroups())
+    },[dispatch, message]);
 
     const currentUser = useSelector(state => state.session.user);
 

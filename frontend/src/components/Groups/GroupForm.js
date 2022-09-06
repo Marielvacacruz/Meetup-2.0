@@ -7,7 +7,7 @@ function GroupForm(){
     //form fields
     const [name, setName] = useState('');
     const [about, setAbout] = useState('');
-    const [type, setType] = useState('');
+    const [type, setType] = useState('In person');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [errors, setErrors] = useState([]);
@@ -65,7 +65,7 @@ function GroupForm(){
                                 type='about'
                                 name='about'
                                 id='about'
-                                placeholder='In 50 words or more tell us about your group'
+                                placeholder='Tell us about your group (must be 50 characters or more)'
                                 value={about}
                                 onChange={(e) => setAbout(e.target.value)}
                                 required
