@@ -3,7 +3,7 @@
     flex-direction: row;
     margin-left: 10rem;
     margin-right: 10rem;
-    margin-top: 10rem;
+    margin-top: 6rem;
 
 }
 
@@ -24,6 +24,7 @@
     text-decoration: none;
     color: rgb(245, 176, 48);
     text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .event-container {
@@ -33,14 +34,17 @@
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     margin-left: auto;
+    margin-top: auto;
 }
 .event-link {
     text-decoration: none;
-    color: rgb(222, 85, 85);
+    color: rgb(85, 188, 222);
     text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .text-sm {
     text-align: center;
     font-weight: 400;
+    font-family: monospace;
 }

@@ -1,3 +1,13 @@
+.form-title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 150;
+    color:#298db5;
+}
+
+label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 [type=about] {
     width: 80%;
     padding: 12px 20px;
@@ -5,7 +15,7 @@
     display: flex;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    font-family: 'Helvetica';
+    font-family: monospace;
 }
 
 [type=type], [type=city], [type=state] {
@@ -16,7 +26,7 @@
     border: 1px solid #ccc;
     border-radius: 5em;
     box-sizing: border-box;
-    font-family: 'Helvetica';
+    font-family: monospace;
 }
 
 .create-button {
@@ -31,6 +41,22 @@
     font-size: 15px;
 }
 
+.cancel-button {
+    background-color: #1e4f40;
+    color: white;
+    padding: 10px;
+    margin: 4px;
+    border: none;
+    cursor: pointer;
+    width: 35%;
+    border-radius: 5em;
+    font-size: 15px;
+}
+
+.cancel-button:hover {
+    background-color: #bed5de;
+}
+
 .submit-button {
     background-color: #6db529;
     color: white;
@@ -41,4 +67,14 @@
     width: 60%;
     border-radius: 5em;
     font-size: 15px;
+}
+
+.message-display {
+    color:crimson;
+    font-size: larger;
+}
+
+.form-errors {
+    color: crimson;
+    font-size: larger;
 }

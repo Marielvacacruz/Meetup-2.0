@@ -61,7 +61,7 @@ function MyGroups() {
                     }
                     {currentUser.id !== group.organizerId &&
                     <>
-                        <button onClick={() => {
+                        <button className="leave-group-button" onClick={() => {
                             return dispatch(leaveGroup(group.id, currentUser.id))
                             .then(async (res) => {
                                 setMessage(res.message)

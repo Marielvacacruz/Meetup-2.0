@@ -11,7 +11,7 @@
 }
 
 .profile-button {
-    background-color: rgb(233, 142, 109);
+    background-color: rgb(227, 111, 69);
     border: none;
     border-radius: 5em;
     width: 60px;
@@ -30,13 +30,15 @@
 
 #user-name {
     font-size: 16px;
-    font-family: Helvetica;
+    font-family: monospace;
     padding-bottom: 8px;
+    align-self: center;
 }
 
 .home-button {
+    align-self: center;
     font-size: 18px;
-    font-family: Helvetica;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     padding-bottom: 8px;
     text-decoration: none;
     color: #298db5;
@@ -48,16 +50,12 @@
     align-items: center;
 }
 
-.my-groups-image {
-    height: 50px;
-    width: 80px;
-}
-
 .my-groups-link, .start-group-link {
     text-decoration: none;
     font-size: 18px;
-    color: palevioletred;
+    color: rgba(20, 98, 43, 0.847);
     padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .my-groups-link:hover, .start-group-link:hover {

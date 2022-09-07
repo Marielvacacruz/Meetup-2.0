@@ -70,7 +70,7 @@ function GroupForm(){
                                 onChange={(e) => setAbout(e.target.value)}
                                 required
                             />
-                        <label htmlFor='type'>Will this group meet in person or online? Choose:
+                        <label htmlFor='type'>Will this group meet in person or online?
                             <select
                                 type="type"
                                 id='type'

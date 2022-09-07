@@ -10,7 +10,7 @@ function GroupCard({group}){
                 className="placeholder-image"
                 />
             </div>
-            <div className="info-container">
+            <div className="detail-container">
                 <h3>{name}</h3>
                 <p>{city}, {state}</p>
                 <p>{about}</p>

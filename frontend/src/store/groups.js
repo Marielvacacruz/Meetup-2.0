@@ -144,8 +144,9 @@ export default function groupsReducer(state = initialState, action){
             action.groups.forEach((group) => newState[group.id] = group);
             return newState;
         case GET_USER_GROUPS:
-            action.groups.forEach((group) => newState[group.id]= group);
-            return newState;
+            let myGroups = {};
+            action.groups.forEach((group) => myGroups[group.id]= group);
+            return myGroups;
         case GET_GROUP_DETAILS:
             newState[action.group.id] = action.group;
             return newState;

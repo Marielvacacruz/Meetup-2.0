@@ -48,15 +48,13 @@ function  GroupDetails(){
                 className="placeholder-image"
                 />
             </div>
-            <button onClick={handleClick} className='join-group-button'>Join group</button>
-            {message && (<div className='message-display'>{message}</div>)}
             <div className='info-container'>
                 <h2>{group.name}</h2>
                 <p>{group.city}, {group.state} <i className="fa-solid fa-location-dot"></i></p>
                 <p>this group meets: {group.type}</p>
                 <p>{group.about}</p>
             </div>
-            <div>
+            <div className='organizer-info'>
                 <h3>Organizer</h3>
                 {group.Organizer.firstName}
             </div>
@@ -69,6 +67,10 @@ function  GroupDetails(){
                 </div>
             ))}
            </div>
+           <button onClick={handleClick} className='join-group-button'>
+            Join group
+            </button>
+            {message && (<div className='message-display'>{message}</div>)}
         </div>
     );
 };

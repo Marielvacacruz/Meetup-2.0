@@ -32,23 +32,54 @@
     border-radius: 25% 10%;
 }
 
+.details-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.detail-container  {
+    padding:  2px 16px;
+    display: grid;
+}
 
 .info-container {
     padding:  2px 16px;
+    display: grid;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+
 .join-group-button {
-    background-color: #de62e7;
+    background-color: #e88553;
     color: white;
     border: none;
     border-radius: 5em;
     padding: 7px 20px;
     margin: 8px;
+    align-self:flex-end;
 
 }
 
+.organizer-info {
+    padding-right: 2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.all-members {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.leave-group-button {
+    background-color: #1b4921;
+    color: white;
+    border: none;
+    border-radius: 5em;
+    padding: 7px 20px;
+    margin: 8px;
+}
+
 .delete-group-button {
-    background-color: #298db5;
+    background-color: #579ad1;
     color: white;
     border: none;
     border-radius: 5em;
@@ -67,6 +98,6 @@
     padding: 7px 20px;
 }
 
-.delete-group-button:hover, .edit-group-button:hover {
+.delete-group-button:hover, .edit-group-link:hover, .leave-group-button:hover, .join-group-button:hover {
     opacity: 0.8;
 }
