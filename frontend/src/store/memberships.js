@@ -74,8 +74,9 @@ const deleteMembership = () => {
     let newState = {...state};
     switch(action.type){
         case GET_ALL_MEMBERS:
-            action.members.forEach((member) => newState[member.id] = member);
-            return newState;
+            let members = {};
+            action.members.forEach((member) => members[member.id] = member);
+            return members;
         case ADD_MEMBERSHIP:
             newState[action.member.memberId] = action.member;
             return newState;

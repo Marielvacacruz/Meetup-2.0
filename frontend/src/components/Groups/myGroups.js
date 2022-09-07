@@ -11,6 +11,7 @@ function MyGroups() {
     const history = useHistory();
 
     const myGroups = useSelector((state) => Object.values(state.groupState));
+    //const status = useSelector((state)  =>  state.membersState[`${currentUser.id}`].Membership.status);
 
     //set messages for successful res or errors
     const [message, setMessage] = useState('');

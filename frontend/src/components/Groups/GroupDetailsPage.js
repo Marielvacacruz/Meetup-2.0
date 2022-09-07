@@ -59,7 +59,7 @@ function  GroupDetails(){
                 {group.Organizer.firstName}
             </div>
            <div className='all-members'>
-            <h3>Members ({group.numMembers})</h3>
+            <h3>Members</h3>
             {members.map(member => (
                 <div key={member.id}>
                     {member.firstName}
