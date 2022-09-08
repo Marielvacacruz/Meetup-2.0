@@ -16,9 +16,10 @@ label {
     border: 1px solid #ccc;
     box-sizing: border-box;
     font-family: monospace;
+    align-self: center;
 }
 
-[type=type], [type=city], [type=state] {
+[type=meet-type], [type=city], [type=state] {
     width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -27,6 +28,12 @@ label {
     border-radius: 5em;
     box-sizing: border-box;
     font-family: monospace;
+    align-self: center;
+}
+
+#type {
+    padding-right: 5px;
+    margin-left: 45px;
 }
 
 .create-button {
@@ -39,6 +46,7 @@ label {
     width: 60%;
     border-radius: 5em;
     font-size: 15px;
+    align-self: center;
 }
 
 .cancel-button {
@@ -51,6 +59,7 @@ label {
     width: 35%;
     border-radius: 5em;
     font-size: 15px;
+    align-self: center;
 }
 
 .cancel-button:hover {
@@ -67,14 +76,16 @@ label {
     width: 60%;
     border-radius: 5em;
     font-size: 15px;
-}
-
-.message-display {
-    color:crimson;
-    font-size: larger;
+    align-self: center;
 }
 
 .form-errors {
-    color: crimson;
-    font-size: larger;
+    color:rgb(221, 47, 47);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: large;
+    align-self: center;
+}
+
+ul {
+    list-style-type: none;
 }

@@ -1,34 +1,37 @@
 
 .form-container {
+    display: flex;
+    flex-direction: column;
     width: 26em;
     height: auto;
     padding: 20px;
     margin: auto;
-}
-
-.signup-container {
-    width: 26em;
-    height: auto;
-    padding: 20px;
-    margin: auto;
+    background-color: #bdb1a2;
+    opacity: 0.8;
+    border-radius: 1em;
 }
 
 .form-title {
     font-size: 1.5em;
-    font-family:Verdana, Geneva, Tahoma, sans-serif
-}
-
-#signup-title {
-    color:#298db5;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    align-self: center;
 }
 
 span {
-    font-family: 'Helvetica';
+    align-self: center;
 }
+
+
+#signup-title {
+    color:#298db5;
+    align-self: center;
+}
+
 
 #signup-link {
     font-size: medium;
-    color:#6db529
+    color:#346308;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 form {
@@ -38,6 +41,11 @@ form {
     flex-direction: column;
     justify-content: space-evenly;
     gap: 1.3em;
+}
+
+.form-inputs {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-errors  {
@@ -53,6 +61,7 @@ form {
     border-radius: 5em;
     box-sizing: border-box;
     font-family: 'Helvetica';
+    align-self: center;
   }
 
 .login-button {
@@ -65,15 +74,18 @@ form {
     width: 60%;
     border-radius: 5em;
     font-size: 15px;
+    align-self: center;
 }
 
 .demo-user {
     background-color: #298db5;
     border: none;
+    padding: 14px 20px;
     border-radius: 2em;
     color: aliceblue;
-    width: 50%;
+    width: 60%;
     margin: 8px;
+    align-self: center;
 }
 
 .signup-button {
@@ -86,6 +98,7 @@ form {
     width: 60%;
     border-radius: 5em;
     font-size: 15px;
+    align-self: center;
 }
 
 /* Add a hover effect for buttons */

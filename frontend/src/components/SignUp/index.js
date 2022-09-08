@@ -68,8 +68,8 @@ function SignupFormPage() {
     };
 
     return (
-        <div className='signup-container'>
-            <h1 className='form-title' id='signup-title'>Sign up</h1>
+        <div className='form-container'>
+            <h1 className='form-title'>Sign up</h1>
                 {hasSubmitted &&  validationErrors.length > 0 &&(
                     <div className='form-errors'>
                         The following errors were found:

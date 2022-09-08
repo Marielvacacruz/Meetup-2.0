@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React from  'react';
 import {ReactComponent as GroupLogo} from  './man-holding-binoculars-finding-something.svg'
-import {ReactComponent as EventLogo} from './woman-watching-paintings-at-an-art-museum.svg'
+//import {ReactComponent as EventLogo} from './woman-watching-paintings-at-an-art-museum.svg'
 function HomePage() {
     return(
         <div className="homepage-links">
@@ -15,7 +15,7 @@ function HomePage() {
                 </div>
 
             </div>
-            <div className="event-container">
+            {/* <div className="event-container">
                     <EventLogo/>
                 <div className="event-text">
                     <Link className="event-link" to='/events'>
@@ -23,7 +23,7 @@ function HomePage() {
                     </Link>
                     <p className="text-sm">Attend an event near you, make some friends, have fun</p>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     );
