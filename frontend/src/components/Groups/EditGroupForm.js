@@ -65,7 +65,7 @@ function EditGroup(){
                             />
                         <label htmlFor='type'>Will this group meet in person or online?</label>
                             <select
-                                type="type"
+                                type="meet-type"
                                 id='type'
                                 value={type}
                                 onChange={(e) => setType(e.target.value)}

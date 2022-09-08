@@ -15,6 +15,8 @@ import './styles/Navigation.css'
 import './styles/HomePage.css'
 import './styles/GroupCard.css'
 import './styles/GroupForm.css'
+import './styles/GroupDetails.css'
+import './styles/Footer.css'
 
 const store = configureStore();
 

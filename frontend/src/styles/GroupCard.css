@@ -1,5 +1,8 @@
+
 .group-title {
     color:rgb(5, 109, 5);
+    font-size: xx-large;
+    padding-left: 19em;
 }
 
 .all-groups-container {
@@ -32,42 +35,10 @@
     border-radius: 25% 10%;
 }
 
-.details-container {
-    display: flex;
-    flex-direction: row;
-}
-
 .detail-container  {
     padding:  2px 16px;
-    display: grid;
 }
 
-.info-container {
-    padding:  2px 16px;
-    display: grid;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-
-.join-group-button {
-    background-color: #e88553;
-    color: white;
-    border: none;
-    border-radius: 5em;
-    padding: 7px 20px;
-    margin: 8px;
-    align-self:flex-end;
-
-}
-
-.organizer-info {
-    padding-right: 2em;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.all-members {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
 
 .leave-group-button {
     background-color: #1b4921;

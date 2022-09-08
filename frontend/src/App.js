@@ -13,6 +13,7 @@ import EditGroup from './components/Groups/EditGroupForm';
 import PageUnderConstruction from './components/Utility/UnderConstruction';
 import PageNotFound from './components/Utility/PageNotFound';
 import GroupDetails from './components/Groups/GroupDetailsPage';
+import Footer from './components/Footer/footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ function App() {
         <Route><PageNotFound/></Route>
       </Switch>
   )}
+  <Footer/>
     </>
   )
 }

@@ -11,7 +11,7 @@
 }
 
 .profile-button {
-    background-color: rgb(227, 111, 69);
+    background-color: #bdb1a2;
     border: none;
     border-radius: 5em;
     width: 60px;
@@ -81,6 +81,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-decoration: none;
     color:#298db5;
+    margin-left: 2em;
 }
 .meetup-nav:hover {
     opacity: 0.8;
@@ -89,14 +90,16 @@
 .left-nav p {
     color: pink;
     margin-top: 0;
+    margin-left: 4em;
 }
 
 .nav-link {
     text-decoration: none;
     font-size: 18px;
-    font-family: 'Helvetica';
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding-right: 14px;
-    color:coral
+    color:rgb(245, 176, 48);
+    margin-right: 2em;
 
 }
 
