@@ -19,8 +19,7 @@ function  GroupDetails(){
 
    useEffect(() => {
     dispatch(getGroupDetails(groupId))
-    dispatch(getAllMembers(groupId))
-    .then(() => setIsLoaded(true));
+    .then(() => dispatch(getAllMembers(groupId)).then(() => setIsLoaded(true)))
    },[dispatch, groupId]);
 
 
