@@ -1,7 +1,7 @@
 .form-title {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 150;
-    color:#298db5;
+    color:#127faa;
 }
 
 label {
@@ -37,7 +37,7 @@ label {
 }
 
 .create-button {
-    background-color: #298db5;
+    background-color: #127faa;
     color: white;
     padding: 14px 20px;
     margin: 8px;
@@ -47,6 +47,10 @@ label {
     border-radius: 5em;
     font-size: 15px;
     align-self: center;
+}
+
+.create-button:hover {
+    background-color: #298db5;
 }
 
 .cancel-button {
@@ -63,11 +67,11 @@ label {
 }
 
 .cancel-button:hover {
-    background-color: #bed5de;
+    opacity: 0.8;
 }
 
 .submit-button {
-    background-color: #6db529;
+    background-color: #3a680f;
     color: white;
     padding: 14px 20px;
     margin: 8px;
@@ -79,8 +83,12 @@ label {
     align-self: center;
 }
 
+.submit-button:hover {
+    opacity: 0.8;
+}
+
 .form-errors {
-    color:rgb(221, 47, 47);
+    color:rgb(60, 54, 54);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: large;
     align-self: center;

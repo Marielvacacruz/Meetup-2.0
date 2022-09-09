@@ -1,13 +1,20 @@
 .details-container {
     display: flex;
     flex-direction: row;
-    border-top: 1px solid rgb(0, 174, 255);
-    border-bottom: 1px solid rgb(0, 174, 255);
+    border-bottom: 1px solid rgb(7, 52, 15);
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 
 .banner-div {
     display: flex;
     padding-left: 3em;
+    display: flex;
+    flex-direction: column;
+ }
+
+ .image-banner {
+    border-radius: 1em;
  }
 
  .join-group-button {
@@ -17,22 +24,23 @@
     border-radius: 5em;
     padding: 7px 20px;
     margin: 8px;
-    align-self:flex-end;
+    align-self: center;
 
 }
 
 .message-display {
-    color:rgb(221, 47, 47);
+    color:rgb(60, 54, 54);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: large;
     padding-top: 2em;
+    align-self: center;
 }
 
 .info-container {
     padding:  2px 16px;
     display: grid;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: auto;
+    margin-left: 50px;
 }
 
 .members {
@@ -55,4 +63,8 @@ h3 {
     padding-top: 4px;
     padding-bottom: 4px;
     align-items: center;
+}
+
+.member-container span {
+    padding-right: 8px;
 }

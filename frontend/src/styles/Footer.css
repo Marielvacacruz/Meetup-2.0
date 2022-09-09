@@ -9,9 +9,11 @@
     padding-left: .5em;
     padding-right: .5em;
     text-decoration: none;
+    color: cornflowerblue;
 }
 
 footer {
     padding-top: 8em;
     position: relative;
+    color:cadetblue;
 }

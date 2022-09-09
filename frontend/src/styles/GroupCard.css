@@ -5,6 +5,17 @@
     padding-left: 19em;
 }
 
+.no-groups-div {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4em;
+}
+
+.no-groups-text {
+    align-self: center;
+    color:#579ad1;
+}
+
 .all-groups-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

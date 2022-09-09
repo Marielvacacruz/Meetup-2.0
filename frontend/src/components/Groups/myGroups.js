@@ -11,13 +11,22 @@ function MyGroups() {
     const history = useHistory();
 
     const myGroups = useSelector((state) => Object.values(state.groupState));
+
+    //might use the code below for later features
     //const status = useSelector((state)  =>  state.membersState[`${currentUser.id}`].Membership.status);
+
+    let element
+       //if current user render logout button & ProfileButton component
+    if(myGroups.length === 0) {
+        element = (<div className="no-groups-div">
+            <h2 className="no-groups-text">Looks like you haven't joined any groups</h2>
+            <Link className="group-link" to='/groups'>check some out here!</Link>
+            </div>)
+    }
 
     //set messages for successful res or errors
     const [message, setMessage] = useState('');
 
-    //attempting to fix loading issue
-    // const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         dispatch(getUserGroups())
@@ -28,6 +37,7 @@ function MyGroups() {
     //if current user is logged out, redirect
     if(!currentUser) return (<Redirect to='/'/>);
 
+
     //if group card is clicked send user to group details page
     const handleClick = (groupId) => {
         history.push(`/groups/${groupId}`)
@@ -37,6 +47,7 @@ function MyGroups() {
         <div className='groups-page'>
             <h2 className='group-title'>My groups</h2>
             {message && (<div className="message-display">{message}</div>)}
+            {element}
             <div className='all-groups-container'>
                 {myGroups.map(group => (
                 <div key={group.id}>

@@ -44,7 +44,7 @@ function  GroupDetails(){
             <div className="banner-div">
                 <img src='https://media.istockphoto.com/id/1202344480/vector/crowd-of-young-and-elderly-men-and-women-in-trendy-hipster-clothes-diverse-group-of-stylish.webp?s=612x612&w=is&k=20&c=sDS8HuUo4kzDHxgHRlbyWYoNiFIyWTAmSZh8eWUJKi4='
                 alt="group placeholder"
-                className="placeholder-image"
+                className="image-banner"
                 />
                 <button onClick={handleClick} className='join-group-button'>
                     Join group
@@ -63,7 +63,7 @@ function  GroupDetails(){
                 <h3>Members</h3>
             {members.map(member => (
                 <div className='member-container' key={member.id}>
-                    {member.firstName}
+                    <span>{member.firstName}</span>
                     <i className="fa-solid fa-circle-user"></i>
                 </div>
             ))}
