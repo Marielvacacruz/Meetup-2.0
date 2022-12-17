@@ -2,7 +2,7 @@
 
 import { csrfFetch } from "./csrf";
 
-//constants
+ //constants
 const GET_ALL_GROUPS =  'GET_ALL_GROUPS';
 const GET_USER_GROUPS = 'GET_USER_GROUPS';
 const GET_GROUP_DETAILS = 'GET_GROUP_DETAILS';
